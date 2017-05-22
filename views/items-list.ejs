@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="itemListApp">
+<head>
+    <meta charset="UTF-8">
+    <title><%=jerseyTitle%></title>
+    <link rel="shortcut icon" href="/images/logo.ico">
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+
+    <!--AngularJS-->
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/javascripts/AngularJs/angular-route.js"></script>
+
+    <!-- bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css">
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--style-->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/items-list.css">
+
+    <!--JS-->
+    <script src="/javascripts/views_js/items-list.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/itemListCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+</head>
+<body>
+<!--header-->
+<% include ./common/header.ejs %>
+<div class="col-md-1"></div>
+<div class="col-md-10 mt30 minh720">
+    <% items.forEach(function(item){%>
+    <div class="col-md-2 items-list-border mr20 mt20 ml15">
+        <div class="pic-box-inner">
+            <a href="/<%=item.itemRootUrl%>/<%=item.itemSort%>/detail/<%=item.id%>"><img src=<%=item.itemContentPicSrc%> class="img-responsive"></a>
+        </div>
+        <div class="info-item">
+            <div class="info-item-01 clearfix">
+                <div class="items-list-price left color-tbc blod fs18"><span>￥</span><span class="itemPriceBlod"><%=item.itemPrice%></span></div>
+                <div class="items-list-dealNum right"><%=item.itemBuyNum%></div>
+            </div>
+            <div class="info-item-02 clearfix tdn mt5">
+                <a href="/<%=item.itemRootUrl%>/<%=item.itemSort%>/detail/<%=item.id%>"><%=item.itemTitle%></a>
+            </div>
+            <div class="info-item-03 tdn clearfix mt5">
+                <span class="glyphicon glyphicon-align-justify fs10 color-tbc"><a href="#" class="fs15 ml5 item-shop" ><%=item.itemShopTitle%></a> </span>
+            </div>
+            <div class="feature-icons mt5 mb10 clearfix">
+                <ul class="item-icons left inline-block">
+                    <li class="inline-block"><span class="icon-xinpin"></span> </li>
+                    <li class="inline-block"><span class="icon-baoxian"></span> </li>
+                </ul>
+                <div class="item-list-contact">
+                    <img src="/images/items-list/contact_icon.jpg" class="img-responsive right inline-block pointer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+
+    <div class="col-md-12 mt30">
+        <ul class="pagination pagination">
+            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+            <li class="active"><a href="javascript:void(0)">1</a></li>
+            <li><a href="javascript:void(0)">2</a></li>
+            <li><a href="javascript:void(0)">3</a></li>
+            <li><a href="javascript:void(0)">4</a></li>
+            <li><a href="javascript:void(0)">5</a></li>
+            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+        </ul><br>
+    </div>
+
+</div>
+<div class="col-md-1"></div>
+<!--footer-->
+<% include ./common/footer.ejs %>
+</body>
+</html>

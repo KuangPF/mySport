@@ -1,0 +1,217 @@
+
+/*login*/
+.login {
+    min-height: 480px;
+}
+.form-bg{
+    background: #0087D5;
+}
+.form-horizontal{
+    background: #E6E6E6;
+    padding-bottom: 40px;
+    border-radius: 5px;
+    text-align: center;
+}
+.form-horizontal .heading{
+    display: block;
+    font-size: 35px;
+    font-weight: bold;
+    padding: 35px 0;
+    margin-bottom: 20px;
+}
+.form-horizontal .form-group{
+    padding: 0 40px;
+    margin: 0 0 25px 0;
+    position: relative;
+}
+.form-horizontal .form-control{
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 0 20px 0 65px;
+    height: 40px;
+    font-size: 1.5em;
+    transition: all 0.3s ease 0s;
+}
+.form-horizontal .form-control:focus{
+    background: #fff;
+    box-shadow: none;
+    outline: 0 none;
+}
+.form-horizontal .form-group i{
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    font-size: 1.5em;
+    color: #737373;
+    transition : all 0.5s ease 0s;
+}
+.form-horizontal .form-control:focus + i{
+    color: #0087D5;
+}
+.form-horizontal .fa-question-circle{
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    font-size: 20px;
+    color: #808080;
+    transition: all 0.5s ease 0s;
+}
+.form-horizontal .fa-question-circle:hover{
+    color: #000;
+}
+.form-horizontal .main-checkbox{
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: #0087D5;
+    border-radius: 10%;
+    position: relative;
+    margin: 5px 0 0 5px;
+    border: 1px solid #0087D5;
+}
+.form-horizontal .main-checkbox label{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.form-horizontal .main-checkbox label:after{
+    content: "";
+    width: 10px;
+    height: 5px;
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    border: 3px solid #fff;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    opacity: 0;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.form-horizontal .main-checkbox input[type=checkbox]{
+    visibility: hidden;
+}
+.form-horizontal .main-checkbox input[type=checkbox]:checked + label:after{
+    opacity: 1;
+}
+.form-horizontal .text{
+    float: left;
+    margin-left: 7px;
+    line-height: 20px;
+    padding-top: 5px;
+    text-transform: capitalize;
+}
+.reset {
+    margin-right: 10px;
+}
+.form-horizontal .btn{
+    float: left;
+    font-size: 1.2em;
+    color: #fff;
+    font-weight: bold;
+    background: #0087D5;
+    border-radius: 10px;
+    padding: 5px 20px;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.5s ease 0s;
+}
+.form-horizontal .btn:hover {
+    background: #CE232A;
+}
+.five  {
+    background: #fff;
+    border-radius: 100px;
+    border: 2px solid #D2232A;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 3%;
+    right: 14%;
+    padding: 1.3em 0 0;
+    text-align: center;
+}
+.five  h1{
+    font-size:1.5em;
+    font-weight: 700;
+    color:#000;
+}
+.five  span{
+    font-size:1em;
+    color:#d2232a;
+}
+.right_account img{
+    margin:0 auto;
+    padding:3em 0 2em;
+}
+.right_account{
+    position:relative;
+}
+a.create{
+    text-decoration:none;
+    color:#fff;
+    font-size: 1.5em;
+    padding: 6px 20px;
+    background: #d2232a;
+    text-align: center;
+    display: block;
+    width: 45%;
+    margin-bottom: 30px;
+    border-radius: 15px;
+}
+a.create:hover{
+    background:#0087D5;
+}
+.account-pass{
+    padding:1.5em 0 0;
+}
+@media only screen and (max-width: 479px){
+    .form-horizontal .form-group{
+        padding: 0 25px;
+    }
+    .form-horizontal .form-group i{
+        left: 45px;
+    }
+    .form-horizontal .btn{
+        padding: 10px 20px;
+    }
+    .form-horizontal .form-control {
+        font-size: 1.2em;
+    }
+}
+@media (max-width: 320px) {
+    .five {
+        top:-25%;
+    }
+    .right_account {
+        margin-top: 2%;
+    }
+    .right_account img {
+        padding: 2em 0 2em;
+    }
+}
+@media (max-width: 414px) {
+    .five {
+        top:-25%;
+    }
+}
+@media (min-width: 1024px) {
+    .five {
+        top:-8%;
+    }
+}
+@media (max-width: 1920px) {
+    .right_account {
+        margin-top: 4%;
+    }
+    .create {
+        margin:3% 0 0 32%;
+    }
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="teamLogoEmblemApp">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+    <link type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link type="text/css" href="/stylesheets/common.css" rel="stylesheet">
+    <link type="text/css" href="/stylesheets/shoes-evaluation-detail.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/teamLogoEmblemCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+</head>
+<body>
+<%include ./common/header.ejs%>
+<div class="container mt30 minh700" ng-controller="teamLogoEmblemController">
+    <label class="col-md-12">相关页面正在开发中...</label>
+    <div class="col-md-12 mt30">
+        <label>友情链接：</label>
+        <a href="<%=page.links%>" class="btn btn-primary btn-sm"><%=page.linksName%></a>
+    </div>
+</div>
+<%include ./common/footer.ejs%>
+</body>
+</html>

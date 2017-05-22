@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="orderConfirmApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%=title%></title>
+    <meta name="HandheldFriendly" content="True" />
+    <link rel="shortcut icon" href="/images/logo.ico">
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/javascripts/AngularJs/angular-route.js"></script>
+
+
+    <!-- Bootstrap3.3.5 CSS -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css">
+    <!--style-->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/order-confirm.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
+
+    <!--JS-->
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/javascripts/views_js/order-confirm.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/orderConfirmCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+</head>
+<body>
+<%include ./common/header.ejs%>
+<div class="col-md-1"></div>
+<div class="col-md-10 mb10 minh720" ng-controller="orderConfirmController">
+    <div class="page-header col-md-12">
+        <h2>选择收货地址</h2>
+    </div>
+    <div class="address col-md-12">
+        <% for(var i=0;i<1;i++){%>
+        <div class="order-confirm-addr inline-block col-md-3 address-select pointer mr10">
+            <div class="addr-hd mt10">
+                <span class="prov"><%=userAddress[i].cityOne%></span>
+                <span class="city"><%=userAddress[i].cityTwo%></span>
+                <span>(</span>
+                <span class="addr-name"><%=customer.userActualName%></span>
+                <span>收)</span>
+                <hr class="hr10">
+            </div>
+            <div class="addr-bd">
+                <span class="dist"><%=userAddress[i].cityThree%></span>
+                <span class="town"><%=userAddress[i].cityStreet%></span>
+                <span class="street"><%=userAddress[i].addressDetail%></span>
+                <span class="phone"><%=customer.telphoneNum%></span>
+            </div>
+            <div class="addr-toolbar mt5 mb10">
+                <a href="#">修改</a>
+            </div>
+        </div>
+        <%}%>
+        <% for(var i=1;i<userAddress.length;i++){%>
+        <div class="order-confirm-addr inline-block col-md-3 address-not-select pointer mr10">
+            <div class="addr-hd mt10">
+                <span class="prov"><%=userAddress[i].cityOne%></span>
+                <span class="city"><%=userAddress[i].cityTwo%></span>
+                <span>(</span>
+                <span class="addr-name"><%=customer.userActualName%></span>
+                <span>收)</span>
+                <hr class="hr10">
+            </div>
+            <div class="addr-bd">
+                <span class="dist"><%=userAddress[i].cityThree%></span>
+                <span class="town"><%=userAddress[i].cityStreet%></span>
+                <span class="street"><%=userAddress[i].addressDetail%></span>
+                <span class="phone"><%=customer.telphoneNum%></span>
+            </div>
+            <div class="addr-toolbar mt5 mb10">
+                <a href="#">修改</a>
+            </div>
+        </div>
+        <%}%>
+        <div class="newAddr col-md-10 mt30">
+            <a href="#" class="btn btn-primary btn-sm">管理收获地址</a>
+            <a href="#" class="btn btn-danger btn-sm">使用新地址</a>
+        </div>
+    </div>
+    <div class="order-detail-confirm col-md-12">
+        <div class="page-header">
+            <h2>确认订单信息</h2>
+        </div>
+        <div class="">
+            <table class="table table-bordered table-hover">
+                <thead class="bg-success">
+                <tr>
+                    <th>店铺商品</th>
+                    <th>商品属性</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>优惠方式</th>
+                    <th>小计</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div>
+                            <div class="order_img clearfix left"><img src="<%=itemInfo.itemSinglePicOneSrc01%>" class="img-responsive"></div>
+                            <div class="left ml15 mt5 tdn">
+                                <p class="order_item_title"><a href=""><%=itemInfo.itemSingleTitle%></a></p>
+                                <p class="order_item_guarantee">7天退换 如实描述 正品保证</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="table_content_center">
+                        <div class="mt5"><span class="color-classification">颜色分类：红黑</span> </div>
+                        <div class="mt5"><span class="order-confirm-item-size">尺码：<%=itemInfo.itemSize[1]%></span></div>
+                    </td>
+                    <td class="table_content_center">
+                        <div class="order_item_num"><%=itemInfo.itemPrice%></div>
+                    </td>
+                    <td class="table_content_center">
+                        <div class="mt5"><span class="order-confirm-item-num">1</span> </div>
+                    </td>
+                    <td class="table_content_center">
+                        <div class="mt5">无优惠</div>
+
+                    </td>
+                    <td class="table_content_center">
+                        <div class="mt5"><span class="order-confirm-item-price color-tmh"><%=itemInfo.itemPrice%></span></div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="order-submit col-md-12 col-sm-12">
+        <div class="right tdn">
+            <a href="/item/<%=itemInfo.itemSort%>/<%=itemInfo.id%>/pay" class="order-submitOrder">提交订单</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-1"></div>
+<!--header-->
+<%include ./common/footer.ejs%>
+</body>
+</html>

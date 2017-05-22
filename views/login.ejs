@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="loginApp">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Login</title>
+	<link rel="shortcut icon" href="/images/logo.ico" type="">
+
+	<script src="/javascripts/jQuery/jquery.min.js"></script>
+
+	<!--theme-style-->
+	<link href="/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/stylesheets/common.css" rel="stylesheet" type="text/css" media="all">
+	<link href="/stylesheets/login.css" rel="stylesheet" type="text/css" media="all">
+
+	<!--JS-->
+	<script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+	<!--AngularJS-->
+	<script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+
+	<!--Controllers-->
+	<script type="text/javascript" src="/controllers/loginCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+</head>
+
+<body> 
+<!--header-->
+<%include ./common/header.ejs%>
+	<!---->	
+<div class="container">
+    <%if(loginTip) {%>
+	<div class="alert alert-danger alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">
+			x
+		</button>
+		用户名或密码错误！请重新登录
+	</div>
+    <% }%>
+	<div class="row login">
+		<div class=" col-md-6">
+			<form class="form-horizontal" action="/login" method="post">
+				<span class="heading">用户登录</span>
+				<div class="form-group">
+					<input type="text" class="form-control" id="username" name="username" placeholder="用户名">
+					<i class="glyphicon glyphicon-user"></i>
+				</div>
+				<div class="form-group help">
+					<input type="password" class="form-control" id="password" name="password" placeholder="密　码">
+					<i class="glyphicon glyphicon-lock"></i>
+				</div>
+				<div class="form-group">
+					<div class="main-checkbox">
+						<input type="checkbox" value="None" id="checkbox1" name="check"/>
+						<label for="checkbox1"></label>
+					</div>
+					<span class="text">记住密码</span>
+					<span class="text tdn" ><a href="/login/password_forget" class="blod ml15">忘记密码？</a> </span>
+				</div>
+				<div class="form-group">
+					<button type="reset" class="btn btn-default reset">重置</button>
+					<button type="submit" class="btn btn-default">登录</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-6 right_account">
+			<a href="#"><img class="img-responsive " src="/images/nike2.png" alt=""></a>
+			<div class="five">
+				<h1>25% </h1><span>降价</span>
+			</div>
+			<a href="/register" class="create">创建账户</a>
+		</div>
+	</div>
+
+</div>
+	<!---->
+<!--footer-->
+<%include ./common/footer.ejs%>
+</body>
+</html>

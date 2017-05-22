@@ -1,0 +1,110 @@
+.pay-item {
+    font-size: 20px;
+}
+.saved-cared-list {
+    padding:0;
+}
+.saved-cared-list li {
+    list-style-type: none;
+}
+.pay-row-basic {
+    height: 52px;
+    line-height: 52px;
+}
+.channel-bank {
+    border: 4px solid #85a1d4;
+}
+.channel-name {
+    width: 135px
+}
+.card-number {
+    width:65px;
+}
+.manage-item {
+    min-width: 135px;
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 10px;
+    height: 33px;
+    line-height: 33px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    float: left;
+}
+.manage-item:hover {
+    background-color: #0ae;
+    color: white;
+    border: 1px solid #ccc;
+}
+.manage-item-add {
+    border: 1px dashed #ccc ;
+}
+.pay-manage-list a, a:hover, a:visited {
+    color: #0ae;
+}
+.pay-success-tip {
+    background: url("../images/icons-01.png") no-repeat -314px -447px ;
+
+}
+.pay-pwd-label {
+    display: block;
+    float: none;
+    margin-left: 0;
+    padding-bottom: 5px;
+    text-align: left;
+    padding-top: 3px;
+    font-size: 14px;
+    width:170px;
+}
+.pay-forgetPwd {
+    line-height: 21px;
+}
+.sixDigitPassword {
+    width:180px;
+    height: 32px;
+    cursor: text;
+    background: #fff;
+    outline: none;
+    position: relative;
+    padding: 8px 0;
+
+    border: 1px solid #cccccc;
+    border-radius: 2px;
+}
+.sixDigitPassword i{
+    float: left;
+    display: block;
+    padding: 4px 0;
+    height: 7px;
+    border-left: 1px solid #cccccc;
+    width: 29px
+}
+.sixDigitPassword b {
+    display: block;
+    margin: 0 auto;
+    width: 7px;
+    height: 7px;
+    overflow: hidden;
+    visibility: hidden;
+    background-image: url("../images/pay/pwd.png");
+}
+.pay-confirm-button {
+    color: #fff;
+    border: 1px solid #0ae;
+    background-color: #0ae;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 700;
+    border-radius: 2px;
+    padding: 0 20px;
+    height: 32px;
+}
+.pay-confirm-button:hover {
+    opacity: 0.8;
+}

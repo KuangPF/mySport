@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html ng-app="indexApp">
+<head>
+	<title>Home</title>
+	<link rel="shortcut icon" href="images/logo.ico" type="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!-- jQuery (necessary for bootstrap's JavaScript plugins) -->
+	<script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+
+	<!--theme-style-->
+
+	<link href="/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/stylesheets/common.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="/stylesheets/owl.carousel.css" rel="stylesheet">
+
+
+	<!--JS-->
+	<script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+	<script type="text/javascript" src="/javascripts/owl.carousel.js"></script>
+	<script type="text/javascript" src="/javascripts/responsiveslides.min.js"></script>
+	<script type="text/javascript" src="/javascripts/views_js/index.js"></script>
+	<script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+
+	<!--Controllers-->
+	<script type="text/javascript" src="/controllers/indexCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+
+</head>
+<body ng-controller="indexCtrl">
+<!--header-->
+<% include ./common/header.ejs %>
+	<!---->
+	<div class="banner">
+		<div class="banner_detail">
+			<h1><span ng-bind="bannerFirst"></span><span ng-bind="bannerSecond"></span></h1>
+			<div class="out">
+				<a href="/shoes-evaluation/detail/59191f499c07c9a9c2fcbb10" class="find" ng-bind="bannerKnowMore"></a>
+				<a href="/content/recommend" class="shop" ng-bind="bannerBuy"></a>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+<!---->
+<div class="content">
+	<div class="sport-your">
+		<div class="line1">
+		</div>
+		<div id="example1">
+		<div id="owl-demo" class="owl-carousel text-center">
+			<div class="item">
+				<a href="/content/teamDortmund" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcFirst}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="/content/teamRealMadrid" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcSecond}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="/content/teamAtletico" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcThird}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="item.ejs" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcFourth}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="item.ejs" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcFifth}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="item.ejs" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcSixth}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="item.ejs" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcSeventh}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="item.ejs" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcEighth}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="item.ejs" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcNinth}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="item.ejs" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcTenth}}" alt="">
+				</a>
+			</div>
+			<div class="item">
+				<a href="item.ejs" title="image" rel="title1">
+					<img class="img-responsive " ng-src="{{srcEleventh}}" alt="">
+				</a>
+			</div>
+		</div>
+		</div>
+		<h6 class="your-in">Your Team</h6>
+		<div class="line2">
+	
+		</div>
+	</div>
+		<!--//sreen-gallery-cursual---->
+	<div class="content-grids">
+		<div class="col-md-4 content-grid" ng-repeat="contentGirds in contentGirdsList">
+			<a ng-href="{{contentGirds.href}}" class="lot"><img class="img-responsive" ng-src="{{contentGirds.src}}" alt=""></a>
+			<div class="shoe">
+				<p ng-bind="contentGirds.label"></p>
+				<label ng-bind="contentGirds.price"></label>
+				<a ng-href="{{contentGirds.href}}" ng-bind="contentGirds.operation" class="left"></a>
+			</div>
+			<div class="clearfix"> </div>
+			<b class="plus-in">+</b>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+
+	<!--ContentTop-->
+	<div class="content-top" ng-repeat="contentTop in contentTopList">
+		<div class="col-md-4 top-content">
+			<a href=""><img class="img-responsive " ng-src="{{contentTop.src}}" alt=""></a>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+
+	<!--ContentBottom-->
+	<div class="content-bottom">
+		<div class="col-md-8 bottom-content">
+			<div class="slider">
+				<div class="callbacks_container">
+					<ul class="rslides" id="slider" >
+						<li ng-repeat="ContentBottomslides in ContentBottomslidesList">
+							<img ng-src="{{ContentBottomslides.src}}" alt="" class="img-responsive">
+							<div class="london">
+								<h5 ng-bind="ContentBottomslides.title"></h5>
+								<p ng-bind="ContentBottomslides.date"></p>
+							</div>
+						</li>
+					</ul>
+			    </div>
+			</div>
+		</div>
+
+
+		<div class="col-md-4 bottom-grid">
+			<h4 ng-bind="bottomGirdsTitle"></h4>
+				<div class="news" ng-repeat="bottomGirdsNews in bottomGirdsNewsList">
+					<span ng-bind="bottomGirdsNews.date"></span>
+					<p ng-bind="bottomGirdsNews.content"></p>
+					<a class="news_more" href="" ng-bind="bottomGirdsNews.more"></a>
+					<div class="foot">
+						<label ng-bind="bottomGirdsNews.sortLabel"></label>
+						<ul class="eye ">
+							<a href="" class="newsHeart"><span class="glyphicon glyphicon-heart newsHeart" style="color: #d2232a"></span><em></em></a>
+							<a href=""><span class="glyphicon glyphicon-comment"></span><em></em> </a>
+						</ul>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+				<a href="#" class="view" ng-bind="bottomGirdsNewsViewAll"></a>
+			</div>
+	<div class="clearfix"> </div>
+	</div>
+</div>
+<!--footer-->
+	<%include ./common/footer.ejs%>
+</body>
+</html>

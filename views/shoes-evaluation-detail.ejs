@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shoesEvaluationDetailApp">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+
+    <!--jQuery-->
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+    <link type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link type="text/css" href="/stylesheets/common.css" rel="stylesheet">
+    <link type="text/css" href="/stylesheets/shoes-evaluation-detail.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/shoesEvaluationDetailCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+</head>
+<body >
+<%include ./common/header.ejs%>
+<div class="container mt30 minh700" ng-controller="shoesEvaluationDetailController">
+    <div class="contentTitle">
+        <h1><%=SEDetailInfo.SECoverTile%></h1>
+    </div>
+    <div class="mt20">
+        <label class="mr20">编辑：<span><%=SEDetailInfo.SEAdminName%></span></label>
+        <label class="mr20">发布时间：<span><%=SEDetailInfo.SEReleaseTime%></span></label>
+        <label class="mr20"><span class="glyphicon glyphicon-eye-open"></span><span class="ml10"><%=SEDetailInfo.SEViews%></span></label>
+    </div>
+    <div class="SEContent col-md-10 mt30">
+        <%for(var i=0;i<SEContent.length;i++) {%>
+        <div class="col-md-12 SEContentText mb10"><P><%=SEContent[i].contentText%></P></div>
+        <div class="col-md-12 SEContentImg mb10"><img src="<%=SEContent[i].contentPicSrc%>" class="img-responsive"></div>
+        <%} %>
+        <div class="col-md-12 SEContentText mb10 mt20">
+            <label>编辑点评：</label>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;<%=SEDetailInfo.SEEditComments%></p>
+        </div>
+    </div>
+</div>
+<%include ./common/footer.ejs%>
+</body>
+</html>

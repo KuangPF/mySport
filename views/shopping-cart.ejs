@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='shoppingCartApp'>
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+    <link rel="shortcut icon" href="/images/logo.ico">
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+
+    <!--AngularJS-->
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/javascripts/AngularJs/angular-route.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css">
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--style-->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css"media="all" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/shopping-cart.css">
+
+    <script type="text/javascript" src="/javascripts/views_js/shopping-cart.js"></script>
+
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/shoppingCartCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+
+
+</head>
+<body ng-controller="shoppingCartController">
+<!--header-->
+<%include ./common/header.ejs%>
+<div class="col-md-1"></div>
+<div class="col-md-10 mt30 minh720">
+    <div class="ml15">
+        <ul class="nav nav-tabs nav_tabs_order">
+            <li class="active"><a href="#/all-shopping">全部商品</a></li>
+            <li ><a href="#/price-reduction">降价商品</a></li>
+            <li ><a href="#/stock-tight">库存紧张</a></li>
+        </ul>
+    </div>
+    <div class="mt25 clearfix">
+        <div class="">
+            <form role="form" class="form-horizontal col-md-6">
+                <div class="input-group clearfix">
+                    <input type="text" class="form-control" placeholder="请输入商品标题进行搜索" name="">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                    <button type="submit" class="btn btn-primary ml25">搜索</button>
+                </div>
+            </form>
+        </div>
+        <div class="right">
+            <span>已选商品(不含运费):</span>
+            <strong class="color-tbc">￥<em id="smallTotal" class="color-tbc totalPrice totalPrice-top">0.00</em></strong>
+            <a id="smallSubmit" class="btn btn-sm btn-primary ml10" href="">结算</a>
+        </div>
+    </div>
+    <div class="mt25 clearfix ml15">
+        <table class="table table-responsive table-hover table-bordered">
+            <thead>
+            <tr class="success">
+                <td class="w52"><input type="checkbox" value="">&nbsp;全选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商品信息</td>
+                <td class="w12">单价</td>
+                <td class="w12">数量</td>
+                <td class="w12">金额</td>
+                <td class="w12">操作</td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="ml15 clearfix">
+        <a class="btn btn-default order_refresh order_refresh right" href="/shopping-cart"><i class="glyphicon glyphicon-refresh right"></i></a>
+        <button class="btn btn-default btn-sm mr10 right">下一页</button>
+        <button class="btn btn-default btn-sm mr10 right" disabled>上一页</button>
+    </div>
+    <div ng-view class="ml15"></div>
+    <div class="col-md-12 floatBarHolder">
+        <div class="scSelectAll inline-block">
+            <div class="cart-checkbox inline-block"><input type="checkbox" class="inline-block"></div>
+        </div>
+        <div class="scOperations tdn inline-block">
+            <a href="#" class="">删除</a>
+            <a href="#" class="">移除收藏夹</a>
+            <a href="#" class="">分享</a>
+        </div>
+        <div class="scBarRight inline-block right">
+            <div id="showSeclectedItems" class="scAmountSum inline-block left">
+                <span class="txt">已选商品&nbsp;</span>
+                <em id="" class="txt color-tbc">0</em>
+                <span class="txt">&nbsp;件</span>
+            </div>
+            <div class="scPriceSum inline-block ml25 left">
+                <span class="txt">合计（不含运费）：</span>
+                <strong><em id="" class="txt color-tbc totalPrice">0</em> </strong>
+            </div>
+            <div class="scBtnArea inline-block ml30 right tdn">
+                <a href="#" class="scSubmitBtn"><span>结算</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-1"></div>
+<script type="text/ng-template" id="shoppingCart_all.html">
+    <div class="maxh792" style="overflow-y: scroll">
+        <% shoppingCartsAll.forEach(function(shoppingCartAll){%>
+        <div class="mb10">
+            <div class="sc-item-head">
+                <div class="cart-checkbox left inline-block ml10"><input type="checkbox" onclick="getShoppingCartChecked(this)"></div>
+                <div class="seller-info left inline-block ml15 tdn" ><a href=""><%=shoppingCartAll.itemShopTitle%></a></div>
+                <div class="seller-contact ml25 inline-block pointer"><img src="/images/shopping-cart/contact_icon.jpg"></div>
+            </div>
+            <div class="sc-item-content mt5">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td class="w52">
+                            <div>
+                                <div class="order_img left"><img src="<%=shoppingCartAll.itemSinglePicOneSrc01%>" class="img-responsive"></div>
+                                <div class="left ml15 mt5">
+                                    <p class="sc_item_title tdn"><a href=""><%=shoppingCartAll.itemSingleTitle%></a></p>
+                                    <p class="sc_item_detail">颜色：<%=shoppingCartAll.itemColor%>  尺码：<%=shoppingCartAll.itemSize%></p>
+                                    <p class="sc_item_guarantee">7天退换 如实描述 正品保证</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="w12">
+                            <div class="order_item_OriginalPrice mt5"><s>￥<%=shoppingCartAll.itemOriginalPrice%></s></div>
+                            <div class="order_item_CurrentPrice mt5 inline-block">￥<p class="singlePrice inline-block"><%=shoppingCartAll.itemCurrentPrice%></p></div>
+                        </td>
+                        <td class="w12">
+                            <div class="mt5">
+                                <span class="btn glyphicon glyphicon-minus inline-block pointer numMinus inline-block" onclick="iteAmountMinus()"></span>
+                                <input type="text" value="1" class="inline-block ml10 w15 tac inline-block" name="itemAmount">
+                                <span class="btn glyphicon glyphicon-plus inline-block pointer ml10 inline-block" onclick="itemAmountPlus()"></span>
+                            </div>
+                        </td>
+                        <td class="w12">
+                            <div class="color-tbc blod mt5">￥<p class="inline-block singleTotalPrice"><%=shoppingCartAll.itemPrice%></p></div>
+                        </td>
+                        <td class="w12">
+                            <div class="tdn mt5"><span class="glyphicon glyphicon-heart-empty"></span> <a href="" class="ml10">移入搜藏夹</a> </div>
+                            <div class="tdn mt5"><span class="glyphicon glyphicon-trash"></span> <a href="" class="ml10" data-toggle="modal" data-target="#deletShoppingCart">删除</a> </div>
+                            <!-- 模态框（Modal） -->
+                            <div class="modal fade" id="deletShoppingCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                删除物品
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            确定要删除该商品吗？
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="deleteShoppingCart('<%=shoppingCartAll.id%>')">确定
+                                            </button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                                关闭
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <%})%>
+        <!--分页-->
+        <ul class="pagination pagination">
+            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+            <li class="active"><a href="javascript:void(0)">1</a></li>
+            <li class="fy"><a href="javascript:void(0)">2</a></li>
+            <li class="fy"><a href="javascript:void(0)">3</a></li>
+            <li class="fy"><a href="javascript:void(0)">4</a></li>
+            <li class="fy"><a href="javascript:void(0)">5</a></li>
+            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+        </ul><br>
+    </div>
+</script>
+<script type="text/ng-template" id="shoppingCart_price-reduction.html">
+    <div>
+        <div class="sc-item-head">
+            <div class="cart-checkbox left inline-block ml10"><input type="checkbox" onclick="getShoppingCartChecked(this)"></div>
+            <div class="seller-info left inline-block ml15 tdn" ><a href="">多特蒙德旗舰店</a></div>
+            <div class="seller-contact ml25 inline-block pointer"><img src="images/shopping-cart/contact_icon.jpg"></div>
+        </div>
+        <div class="sc-item-content mt5">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td class="w52">
+                        <div>
+                            <div class="order_img left"><img src="images/order/order01.jpg" class="img-responsive"></div>
+                            <div class="left ml15 mt5">
+                                <p class="sc_item_title tdn"><a href="">NIKE MERCURIAL AG圆钉刺客11代男子足球鞋</a></p>
+                                <p class="sc_item_detail">颜色：红黑  尺码：41</p>
+                                <p class="sc_item_guarantee">7天退换 如实描述 正品保证</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="w12">
+                        <div class="order_item_OriginalPrice mt5"><s>￥569.00</s></div>
+                        <div class="order_item_CurrentPrice mt5 inline-block">￥<p class="singlePrice inline-block">529.00</p></div>
+                    </td>
+                    <td class="w12">
+                        <div class="mt5">
+                            <span class="btn glyphicon glyphicon-minus inline-block pointer numMinus inline-block" onclick="iteAmountMinus()"></span>
+                            <input type="text" value="1" class="inline-block ml10 w15 tac inline-block" name="itemAmount">
+                            <span class="btn glyphicon glyphicon-plus inline-block pointer ml10 inline-block" onclick="itemAmountPlus()"></span>
+                        </div>
+                    </td>
+                    <td class="w12">
+                        <div class="color-tbc blod mt5">￥<p class="inline-block singleTotalPrice">529</p></div>
+                    </td>
+                    <td class="w12">
+                        <div class="tdn mt5"><span class="glyphicon glyphicon-heart-empty"></span> <a href="" class="ml10">移入搜藏夹</a> </div>
+                        <div class="tdn mt5"><span class="glyphicon glyphicon-trash"></span> <a href="" class="ml10" onclick="deleteItem()">删除</a> </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--分页-->
+        <ul class="pagination pagination">
+            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+            <li class="active"><a href="javascript:void(0)">1</a></li>
+            <li class="fy"><a href="javascript:void(0)">2</a></li>
+            <li class="fy"><a href="javascript:void(0)">3</a></li>
+            <li class="fy"><a href="javascript:void(0)">4</a></li>
+            <li class="fy"><a href="javascript:void(0)">5</a></li>
+            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+        </ul><br>
+    </div>
+</script>
+<script type="text/ng-template" id="shoppingCart_stock-tight.html">
+    <div>
+        <div class="sc-item-head">
+            <div class="cart-checkbox left inline-block ml10"><input type="checkbox" onclick="getShoppingCartChecked(this)"></div>
+            <div class="seller-info left inline-block ml15 tdn" ><a href="">多特蒙德旗舰店</a></div>
+            <div class="seller-contact ml25 inline-block pointer"><img src="images/shopping-cart/contact_icon.jpg"></div>
+        </div>
+        <div class="sc-item-content mt5">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td class="w52">
+                        <div>
+                            <div class="order_img left"><img src="images/order/order01.jpg" class="img-responsive"></div>
+                            <div class="left ml15 mt5">
+                                <p class="sc_item_title tdn"><a href="">NIKE MERCURIAL AG圆钉刺客11代男子足球鞋</a></p>
+                                <p class="sc_item_detail">颜色：红黑  尺码：41</p>
+                                <p class="sc_item_guarantee">7天退换 如实描述 正品保证</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="w12">
+                        <div class="order_item_OriginalPrice mt5"><s>￥569.00</s></div>
+                        <div class="order_item_CurrentPrice mt5 inline-block">￥<p class="singlePrice inline-block">529.00</p></div>
+                    </td>
+                    <td class="w12">
+                        <div class="mt5">
+                            <span class="btn glyphicon glyphicon-minus inline-block pointer numMinus inline-block" onclick="iteAmountMinus()"></span>
+                            <input type="text" value="1" class="inline-block ml10 w15 tac inline-block" name="itemAmount">
+                            <span class="btn glyphicon glyphicon-plus inline-block pointer ml10 inline-block" onclick="itemAmountPlus()"></span>
+                        </div>
+                    </td>
+                    <td class="w12">
+                        <div class="color-tbc blod mt5">￥<p class="inline-block singleTotalPrice">529</p></div>
+                    </td>
+                    <td class="w12">
+                        <div class="tdn mt5"><span class="glyphicon glyphicon-heart-empty"></span> <a href="" class="ml10">移入搜藏夹</a> </div>
+                        <div class="tdn mt5"><span class="glyphicon glyphicon-trash"></span> <a href="" class="ml10" onclick="deleteItem()">删除</a> </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--分页-->
+        <ul class="pagination pagination">
+            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+            <li class="active"><a href="javascript:void(0)">1</a></li>
+            <li class="fy"><a href="javascript:void(0)">2</a></li>
+            <li class="fy"><a href="javascript:void(0)">3</a></li>
+            <li class="fy"><a href="javascript:void(0)">4</a></li>
+            <li class="fy"><a href="javascript:void(0)">5</a></li>
+            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+        </ul><br>
+    </div>
+</script>
+</body>
+<!--footer-->
+<%include ./common/footer.ejs%>
+</html>

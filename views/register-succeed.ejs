@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="registerApp">
+<head>
+	<title>Register</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="/images/logo.ico" type="">
+	<!--theme-style-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/register.css" media="all">
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+	<script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/javascripts/bootstrap_plugin/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="/javascripts/views_js/register.js"></script>
+
+	<!--AngularJS-->
+	<script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+
+	<!--Controllers-->
+	<script type="text/javascript" src="/controllers/registerCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+
+</head>
+<body>
+<!--header-->
+<%include ./common/header.ejs%>
+<!---->
+
+<div class="container minh720">
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">
+			&times
+		</button>
+		注册成功！
+	</div>
+	<a href="/" class="btn btn-primary btn-sm mt30">直接登录</a>
+</div>
+
+<!--footer-->
+
+<%include ./common/footer.ejs%>
+</body>
+
+</html>

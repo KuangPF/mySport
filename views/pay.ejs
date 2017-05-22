@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="payApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%=title%></title>
+    <meta name="HandheldFriendly" content="True" />
+    <link rel="shortcut icon" href="/images/logo.ico">
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/javascripts/AngularJs/angular-route.js"></script>
+
+
+    <!-- Bootstrap3.3.5 CSS -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css">
+    <!--style-->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/pay.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
+
+    <!--JS-->
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--Controller-->
+    <script type="text/javascript" src="/controllers/payCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+</head>
+<body>
+<!--header-->
+<%include ./common/header.ejs%>
+<div class="col-md-1"></div>
+<div class="col-md-10 mb10 minh700" ng-controller="payController">
+    <div class="page-header">
+        <h2>请选择支付方式</h2>
+    </div>
+    <div class="pay-item">
+        <div class="">
+            <label class="pay-item-info fs20">商品信息：</label>
+            <span class="pay-item-title fs15"><%=itemInfo.itemSingleTitle%></span>
+            <span class="pay-item-color-detail ml15 fs15">颜色分类：红黑</span>
+            <span class="pay-item-size-detail ml15 fs15">尺码：41</span>
+        </div>
+        <div class=" mt15">
+            <span class="seller-detail fs20 pointer"><%=itemInfo.itemShopTitle%></span>
+            <span class="seller-detail pointer"><img src="/images/shopping-cart/contact_icon.jpg"></span>
+        </div>
+        <div class="mt25">
+            <span class="pat-item-price fs25 color-tmh blod">￥<span class="color-tmh fs25 blod"><%=itemInfo.itemPrice%></span> </span>
+        </div>
+    </div>
+    <hr>
+    <div class="pay-ways mt30">
+        <div class="alipay inline-block col-md-2">
+            <span><img src="/images/pay/alipay.png" class="img-responsive"></span>
+            <span class=""><img src="/images/pay/QR-code-alipay.jpg" class="img-responsive mt25"></span>
+        </div>
+        <div class="weichat-pay inline-block col-md-2">
+            <span><img src="/images/pay/wechat-pay.jpg" class="img-responsive"></span>
+            <span class=""><img src="/images/pay/QR-code-wechatpay.jpg" class="img-responsive mt25"></span>
+        </div>
+        <form action="">
+            <div class="bank col-md-10 mt30">
+                <ul class="saved-cared-list">
+                    <li class="channel-bank">
+                        <div class="ml15 pay-row-basic">
+                            <input type="radio" class="ml15">
+                            <span class="inline-block ml25"><img src="/images/pay/ICBC_s.jpg" class="img-responsive inline-block mb5"></span>
+                            <span class="channel-name inline-block">中国工商银行</span>
+                            <span class="card-number inline-block">**5255</span>
+                            <span class="card-type">储蓄卡 | 快捷</span>
+                            <div class="pay-amount right mr30">
+                                <span>支付</span>
+                                <em class="color-tbc fs20"><%=itemInfo.itemPrice%></em>
+                                <span>元</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="channel-bank mt10">
+                        <div class="ml15 pay-row-basic">
+                            <input type="radio" class="ml15">
+                            <span class="inline-block ml25"><img src="/images/pay/CMBC_s.jpg" class="img-responsive inline-block mb5"></span>
+                            <span class="channel-name inline-block">中国招商银行</span>
+                            <span class="card-number inline-block">**5255</span>
+                            <span class="card-type">储蓄卡 | 快捷</span>
+                            <div class="pay-amount right mr30">
+                                <span>支付</span>
+                                <em class="color-tbc fs20"><%=itemInfo.itemPrice%></em>
+                                <span>元</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="pay-manage-list tdn mt30">
+                    <a href="#" class="manage-item"><span>其他付款方式</span></a>
+                    <a href="#" class="manage-item manage-item-add"><span>创建快捷/网银付款</span></a>
+                </div>
+                <div class="clearfix"></div>
+                <div class="pay-security mt30">
+                    <div class="pay-success-tip"><div class="ml20">你在安全的环境中，请放心使用！</div></div>
+                    <div class="pay-bank-pwd mt10">
+                        <label class="pay-pwd-label">支付宝支付密码:</label>
+                        <div class="sixDigitPassword left">
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <i><b></b></i>
+                        </div>
+                        <div class="tdn left mt5">
+                            <span class="pay-forgetPwd ml15"><a href="#">忘记密码?</a> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="mt10">
+                    <input type="submit" value="确认付款" class="pay-confirm-button">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-md-1"></div>
+<!--footer-->
+<%include ./common/footer.ejs%>
+</body>
+</html>

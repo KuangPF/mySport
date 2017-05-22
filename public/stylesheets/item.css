@@ -1,0 +1,125 @@
+body {
+    background-color: #fff;
+}
+.item-title {
+    padding-bottom: .2em;
+    line-height: 1;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+.summary-price-wrap {
+}
+.item-price {
+    font-size: 20px;
+}
+.item-promotion-price {
+    font-size: 20px;
+}
+.item-price p {
+    color: #E4393C;
+    font-weight: bold;
+}
+.price-reduction {
+    font-size: 15px;
+    color: #0087d5;
+    font-weight: bold;
+}
+.red_bg {
+    color: #df3033;
+    background: 0 0;
+    border: 1px solid #df3033;
+    margin-right: 5px;
+    font-size: 12px;
+}
+.promotion-reduce {
+    font-size: 15px;
+}
+.freight {
+    font-size: 20px;
+}
+.seller-address {
+    font-size: 18px;
+}
+.buyer-address {
+    font-size: 18px;
+}
+.address-down {
+    font-size: 15px;
+}
+.express-delivery {
+    font-size: 18px;
+}
+.hr-line {
+    border: 1px solid #c9c9c9;
+}
+.monthly-sales {
+    line-height: 16px;
+    height: 16px;
+    color: #c40000;
+    font-weight: 700;
+    margin-left: 3px;
+}
+.cumulative-evaluation {
+    line-height: 16px;
+    height: 16px;
+    color: #c40000;
+    font-weight: 700;
+    margin-left: 3px;
+}
+.integral {
+    line-height: 16px;
+    height: 16px;
+    color: #280;
+    font-weight: 700;
+    margin-left: 3px;
+
+}
+.shoe-size {
+}
+.normal {
+    float: left;
+    position: relative;
+    margin: 0 4px -10px 0;
+    vertical-align: middle;
+    padding: 1px;
+    display: inline-block;
+    border: 1px solid #b8b7bd;
+    line-height: 28px;
+}
+.shoe-size-num a {
+    float: left;
+    background-color: #fff;
+    white-space: nowrap;
+    width: auto!important;
+    min-width: 10px;
+    padding: 0 9px;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+}
+.selected {
+    border: 2px solid #be0106;
+}
+.item-evaluation {
+    font-size: 25px;
+    font-weight: bold;
+    color: #be0106;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

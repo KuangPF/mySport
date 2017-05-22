@@ -1,0 +1,29 @@
+.contentTitle h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #000;
+    line-height: 40px;
+    text-align: left;
+    margin: 0 auto 10px auto;
+}
+.SEContent {
+    padding-left:0;
+}
+.SEContentImg {
+    padding-left:0;
+}
+.SEContentText {
+    padding-left: 0;
+}
+.SEContentText p{
+    font-size: 16px;
+    line-height: 32px;
+    color: #000;
+    word-break: break-all;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "微软雅黑","宋体","黑体","Arial";
+    font-weight: lighter;
+}

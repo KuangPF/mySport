@@ -1,0 +1,39 @@
+body {
+    background-color: #fff;
+}
+.hr10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.address-select {
+    border: 2px solid #be0106;
+}
+.address-not-select {
+    border:2px dashed rgba(190, 1, 6, 0.5);
+}
+.newAddr {
+    padding-left: 0px;
+}
+.order-submitOrder {
+    display: inline-block;
+    width: 182px;
+    height: 39px;
+    position: relative;
+    vertical-align: middle;
+    line-height: 39px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    background: #dd2727;
+    color: #fff;
+}
+.order-submit a:hover {
+    color: #fff;
+    opacity: 0.9;
+    background-color: red;
+    transition: all ease-in-out 0.3s 0s;
+}
+.order-submit a:focus{
+    color: #fff;
+}

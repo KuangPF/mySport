@@ -1,0 +1,119 @@
+<div class="line">
+</div>
+<div class="header" ng-controller="headerController">
+    <div class="logo">
+        <a href="/"><img ng-src="{{logSrc}}" alt="" ></a>
+    </div>
+    <div  class="header-top">
+        <div class="header-grid">
+            <ul class="header-in dropdown">
+               <!-- <li><span class="glyphicon glyphicon-user"></span> <a href="/login" ng-bind="headerGirdMyAccount"></a> </li>-->
+                <%if(username){%>
+                <li><span class="glyphicon glyphicon-user"></span> <a href="" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1">
+                        <%=username%>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="right: 0">
+                        <li role="presentation" style="display: block">
+                            <a role="menuitem" tabindex="-1" href="/information"><span class="glyphicon glyphicon-cog"></span> 基本设置</a>
+                        </li>
+                        <li role="presentation" style="display: block">
+                            <a role="menuitem" tabindex="-1" href="/shopping-cart"><span class="glyphicon glyphicon-shopping-cart"></span>我的购物车 </a>
+                        </li>
+                        <li role="presentation" style="display: block">
+                            <a role="menuitem" tabindex="-1" href="/order"><span class="glyphicon glyphicon-list-alt"></span>我的订单</a>
+                        </li>
+                        <li role="presentation" style="display: block">
+                            <a role="menuitem" tabindex="-1" href="/log-out"><span class="glyphicon glyphicon-log-out"></span>注销登录 </a>
+                        </li>
+                    </ul>
+                </li>
+                <% } else { %>
+                <li><span class="glyphicon glyphicon-user"></span> <a href="/login" ng-bind="headerGirdMyAccount"></a> </li>
+                <% } %>
+                <li>
+                    <span class="glyphicon glyphicon-map-marker header-glyphicon-map-maker"></span>
+                    <select class="in-drop">
+                        <option class="in-of" ng-repeat="headerGirdProvince in headerGirdProvinceList" ng-bind="headerGirdProvince.province"></option>
+                    </select>
+                </li>
+            </ul>
+            <div class="search-box">
+                <div id="sb-search" class="sb-search">
+                    <form action="">
+                        <input class="sb-search-input" placeholder="请输入商品名称..." type="search" name="search" id="search">
+                        <input class="sb-search-submit" type="submit" value="">
+                        <span class="sb-icon-search"> </span>
+                    </form>
+                </div>
+            </div>
+            <!-- search-scripts -->
+            <script src="/javascripts/classie.js"></script>
+            <script src="/javascripts/uisearch.js"></script>
+            <script>
+                new UISearch( document.getElementById( 'sb-search' ) );
+            </script>
+            <!-- //search-scripts -->
+            <div class="online">
+                <a href="/" ng-bind="online"></a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="header-bottom">
+            <div class="h_menu4"><!-- start h_menu4 -->
+                <a class="toggleMenu" href="#">Menu</a>
+                <ul class="nav">
+                    <li class="active"><a href="/" ng-bind="headerBottomHomePage"></a></li>
+                    <li><a href=""><p class="inline-block" ng-bind="ClubJersey"></p><i></i></a>
+                        <ul>
+                            <li ng-repeat="headerBottomClubJersey in headerBottomClubJerseyList"><a ng-href="{{headerBottomClubJersey.href}}" ng-bind="headerBottomClubJersey.clubName"></a></li>
+                        </ul>
+                    </li>
+                    <li><a href=""><p class="inline-block" ng-bind="NationalTeamJersey"></p><i> </i></a>
+                        <ul>
+                            <li ng-repeat="headerBottomNationalTeamJersey in headerBottomNationalTeamJerseyList"><a ng-href="{{headerBottomNationalTeamJersey.href}}" ng-bind="headerBottomNationalTeamJersey.nationalTeamName"></a></li>
+                        </ul>
+                    </li>
+                    <li><a href=""><p class="inline-block" ng-bind="FootballShoes"></p><i> </i></a>
+                        <ul>
+                            <li ng-repeat="headerBottomFootballShoes in headerBottomFootballShoesList"><a ng-href="{{headerBottomFootballShoes.href}}" ng-bind="headerBottomFootballShoes.footballShoesLabel"></a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/football-brand" ng-bind="FootballBrand"></a></li>
+                    <li><a href="/shoes-evaluation" ng-bind="ShoesEvaluation"></a></li>
+                    <li><a href="/team-logo-emblem" ng-bind="TeamLogoEmblem"></a></li>
+                    <li><a href="#"><p class="inline-block" ng-bind="FanForum"></p><i> </i></a>
+                        <ul>
+                            <li ng-repeat="headerBottomFanForum in headerBottomFanForumList"><a ng-href="{{headerBottomFanForum.href}}" ng-bind="headerBottomFanForum.fanForumOption"></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <script type="text/javascript" src="/javascripts/nav.js"></script>
+            </div><!-- end h_menu4 -->
+            <ul class="header-bottom-in">
+                <li ><select class="drop">
+                        <option value="" class="in-of" ng-repeat="dropLanguage in dropLanguageList" ng-bind="dropLanguage.species"></option>
+                    </select>
+                </li>
+                <li ><select class="drop">
+                        <option value="" class="in-of" ng-repeat="dropMode in dropModeList" ng-bind="dropMode.species">隐身模式(ON)</option>
+                    </select>
+                </li>
+            </ul>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+<script>
+    $(function () {
+        $(".dropdown-menu>li").hover(
+            function () {
+                $(".dropdown-menu>li>a>span").css('color','#262626');
+        },
+            function () {
+                $(".dropdown-menu>li>a>span").css('color','#fff');
+            }
+        )
+    })
+</script>

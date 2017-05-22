@@ -1,0 +1,52 @@
+<div class="footer" ng-controller="footerController">
+    <div class="col-md-3 footer-column">
+        <h4 ng-bind="footerColumnFootballClub"></h4>
+        <div class="run-top">
+            <ul class="run-grid">
+                <li ng-repeat="runGridOne in runGridOneList"><a ng-href="{{runGridOne.href}}" ng-bind="runGridOne.teamName"></a></li>
+            </ul>
+            <ul class="run-grid">
+                <li ng-repeat="runGridTwo in runGridTwoList"><a ng-href="{{runGridTwo.href}}" ng-bind="runGridTwo.teamName"></a></li>
+            </ul>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-3 footer-column left-footer">
+        <h4 ng-bind="footerColumnLatestNews"></h4>
+        <div class="run-top top-run">
+            <ul class="run-grid">
+                <li ng-repeat="runGridThree in runGridThreeList"><a ng-href="{{runGridThree.href}}" ng-bind="runGridThree.teamName"></a></li>
+            </ul>
+            <ul class="run-grid">
+                <li ng-repeat="runGridFour in runGridFourList"><a ng-href="{{runGridFour.href}}" ng-bind="runGridFour.teamName"></a></li>
+            </ul>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="col-md-2 footer-column left-footer">
+        <h4 ng-bind="footerColumnMyAccount"></h4>
+        <ul class="run-grid-in">
+            <li><a href="/login" ng-bind="footerColumnLogin"></a></li>
+            <li><a href="#" ng-bind="footerColumnMyEquipment"></a></li>
+            <li><a href="#" ng-bind="footerColumnMyCollection"></a></li>
+        </ul>
+    </div>
+    <div class="col-md-4 footer-column left-footer">
+        <ul class="social-in">
+            <li><a href="#"><i class="tencent social_hover"> </i></a></li>
+            <li><a href="#"><i class="wechat social_hover"> </i></a></li>
+            <li><a href="#"><i class="weibo social_hover"> </i></a></li>
+            <li><a href="#"><i class="space social_hover"> </i></a></li>
+        </ul>
+        <div class="letter">
+            <h5 ng-bind="footerLetterTitle"></h5>
+            <span ng-bind="footerLetterLabel"></span>
+            <h6 ng-bind="footerLetterContent"></h6>
+            <p ng-bind="footerLetterName"></p>
+            <a href="" class="sign" ng-bind="footerLetterKnowMore"></a>
+            <p class="footer-class" ng-bind="mySportCopyright"></p>
+        </div>
+
+    </div>
+    <div class="clearfix"> </div>
+</div>

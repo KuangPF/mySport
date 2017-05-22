@@ -1,0 +1,54 @@
+.form-group input {
+    font-size: 35px;
+}
+.control-label {
+    font-size: 1.5em;
+}
+.form-horizontal .form-control{
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: none;
+    height: 40px;
+    font-size: 1.5em;
+    transition: all 0.3s ease 0s;
+}
+.form-horizontal .form-control:focus{
+    background: #fff;
+    box-shadow: none;
+    outline: 0 none;
+}
+.form-horizontal .btn{
+    float: left;
+    font-size: 1.2em;
+    color: #fff;
+    font-weight: bold;
+    background: #0087D5;
+    border-radius: 5px;
+    padding: 5px 20px;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.5s ease 0s;
+}
+.form-horizontal .btn:hover {
+    background: #CE232A;
+}
+.has-error .help-block {
+    font-size: 1.2em;
+}
+.form-group a {
+    text-decoration: none;
+}
+.form-group span {
+    font-size: 1.2em;
+    margin-left: 5px;
+}
+.reset {
+    margin-right: 10px;
+}
+.minh720 {
+    min-height: 720px;
+}
+.mt30 {
+    margin-top: 30px;
+}

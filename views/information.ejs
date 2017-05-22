@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="zh-CN" ng-app='userInformationApp'>
+
+<head>
+    <meta charset="utf-8">
+    <title><%=title%></title>
+    <link rel="shortcut icon" href="/images/logo.ico">
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/javascripts/AngularJs/angular-route.js"></script>
+
+
+    <!-- Bootstrap3.3.5 CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap/css/bootstrap.css">
+    <!--style-->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/infornation.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/common.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/city-picker/city-picker.css" >
+    <link rel="stylesheet" type="text/css" href="/stylesheets/select/css/bootstrap-select.css">
+
+    <!--bootstrap Datetimepicker-->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <!--city-picker-->
+    <script type="text/javascript" src="/stylesheets/city-picker/city-picker.data.js"></script>
+    <script type="text/javascript" src="/stylesheets/city-picker/city-picker.js"></script>
+    <script type="text/javascript" src="/stylesheets/city-picker/main.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/date.css">
+    <!--JS-->
+    <!--滑动验证-->
+    <script src="/javascripts/drag.js"></script>
+    <!--选择搜索框-->
+    <script src="/stylesheets/select/js/bootstrap-select.js"></script>
+    <script src="/javascripts/views_js/information.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/informationCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+
+</head>
+
+<body>
+<!--header-->
+<% include ./common/header.ejs %>
+<div class="row mt30 scroll_y minh720" ng-controller="userInformationController">
+    <div class="col-md-2 col-md-2-width01">
+        <div class="panel-group table-responsive" role="tablist">
+            <div class="panel panel-primary leftMenu">
+                <div class="panel-heading" id="collapseListGroupHeading1" data-toggle="collapse" data-target="#collapseListGroup1" role="tab" >
+                    <h4 class="panel-title">
+                        基本资料
+                        <span class="glyphicon glyphicon-chevron-up right"></span>
+                    </h4>
+                </div>
+                <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1">
+                    <ul class="list-group">
+                        <li class="list-group-item myInfo_basic">
+                            <a class="menu-item-left" href="#/user/baseInfo">
+                                <span class="glyphicon glyphicon-user mr10"></span>基本信息
+                            </a>
+                        </li>
+                        <li class="list-group-item myInfo_adr">
+                            <a class="menu-item-left" href="#/user/deliver_address">
+                                <span class="glyphicon glyphicon-map-marker mr10"></span>收货地址
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--panel end-->
+            <div class="panel panel-primary leftMenu">
+                <div class="panel-heading" id="collapseListGroupHeading2" data-toggle="collapse" data-target="#collapseListGroup2" role="tab" >
+                    <h4 class="panel-title">
+                        安全设置
+                        <span class="glyphicon glyphicon-chevron-up right"></span>
+                    </h4>
+                </div>
+                <div id="collapseListGroup2" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading2">
+                    <ul class="list-group">
+                        <li class="list-group-item myInfo_pwd">
+                            <a class="menu-item-left" href="#/security/changePassword">
+                                <span class="glyphicon glyphicon-lock mr10"></span>修改登录密码
+                            </a>
+                        </li>
+                        <li class="list-group-item myInfo_phone">
+                            <a class="menu-item-left" href="#/security/bindPhone">
+                                <span class="glyphicon glyphicon-phone mr10"></span>手机绑定
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-primary leftMenu">
+                <div class="panel-heading" id="collapseListGroupHeading3" data-toggle="collapse" data-target="#collapseListGroup3" role="tab" >
+                    <h4 class="panel-title">
+                        账号绑定
+                        <span class="glyphicon glyphicon-chevron-up right"></span>
+                    </h4>
+                </div>
+                <div id="collapseListGroup3" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading3">
+                    <ul class="list-group">
+                        <li class="list-group-item myInfo_alipay">
+                            <a class="menu-item-left" href="#/account/alipay">
+                                <span class="glyphicon glyphicon-usd mr10"></span>支付宝绑定
+                            </a>
+                        </li>
+                        <li class="list-group-item myInfo_weibo">
+                            <a class="menu-item-left" href="#/account/weibo">
+                                <span class="glyphicon glyphicon-leaf mr10"></span>微博绑定
+                            </a>
+                        </li>
+                        <li class="list-group-item myInfo_share">
+                            <a class="menu-item-left" href="#/account/share">
+                                <span class="glyphicon glyphicon-share mr10"></span>分享绑定
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-primary leftMenu">
+                <div class="panel-heading" id="collapseListGroupHeading4" data-toggle="collapse" data-target="#collapseListGroup4" role="tab" >
+                    <h4 class="panel-title">
+                        评价管理
+                        <span class="glyphicon glyphicon-chevron-up right"></span>
+                    </h4>
+                </div>
+                <div id="collapseListGroup4" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading4">
+                    <ul class="list-group">
+                        <li class="list-group-item myInfo_hbs">
+                            <a class="menu-item-left" href="#/evaluation/hbs">
+                                <span class="glyphicon glyphicon-check mr10"></span>已填评价
+                            </a>
+                        </li>
+                        <li class="list-group-item myInfo_nfo" onclick="nfoClick()">
+                            <a class="menu-item-left" href="#/evaluation/nfo">
+                                <span class="glyphicon glyphicon-bell mr10"></span>未填评价
+                                <span class="badge badge_color">9</span>
+                            </a>
+                        </li>
+                        <li class="list-group-item myInfo_eg">
+                            <a class="menu-item-left" href="#/evaluation/grade">
+                                <span class="glyphicon glyphicon-thumbs-up mr10"></span>评价等级
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel panel-primary leftMenu">
+                <div class="panel-heading" id="collapseListGroupHeading5" data-toggle="collapse" data-target="#collapseListGroup5" role="tab" >
+                    <h4 class="panel-title">
+                        我的足记
+                        <span class="glyphicon glyphicon-chevron-up right"></span>
+                    </h4>
+                </div>
+                <div id="collapseListGroup5" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading5">
+                    <ul class="list-group">
+                        <li class="list-group-item myInfo_lu_month">
+                            <a class="menu-item-left" href="#/lu/month">
+                                <span class="glyphicon glyphicon-hourglass mr10"></span>最近一个月
+                            </a>
+                        </li>
+                        <li class="list-group-item myInfo_lu_all">
+                            <a class="menu-item-left" href="#/lu/all">
+                                <span class="glyphicon glyphicon-filter mr10"></span>所有足记
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-view class="height700 scroll_y"></div>
+</div>
+<script type="text/ng-template" id="baseInfo.html">
+    <div class="content  col-md-12">
+        <div class="page-header">
+            <h1>基本信息</h1>
+        </div>
+        <div class="">
+            <form role="form" class="form-horizontal" method="post" action="/information/save">
+                <div class="form-group">
+                    <label for="username" class="control-label col-md-1" >用户名:&nbsp;</label>
+                    <div class="col-md-5 input-group">
+                        <input id="username" type="text" value="<%=userInfo.username%>" class="form-control" disabled name="username">
+                        <span class="input-group-addon">该用户名为用户登录，不可修改</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nickname" class="control-label col-md-1">昵称:&nbsp;</label>
+                    <div class="col-md-5 input-group">
+                        <input id="nickname" type="text" class="form-control" placeholder="请输入昵称" value="<%=userInfo.userNickName%>" name="userNickName">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-heart"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="motto" class="control-label col-md-1" >个性签名:&nbsp;</label>
+                    <div class="col-md-5 input-group">
+                        <input id="motto" type="text" class="form-control" placeholder="请输入个性签名" value="<%=userInfo.userSignature%>" name="userSignature">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="control-label col-md-1" >邮箱:&nbsp;</label>
+                    <div class="col-md-5 input-group">
+                        <input id="email" type="email" class="form-control" placeholder="请输入邮箱" value="<%=userInfo.usernameEmail%>" name="usernameEmail">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label col-md-1">真实姓名:&nbsp;</label>
+                    <div class="col-md-5 input-group">
+                        <input id="name" type="text" class="form-control" placeholder="请输入姓名" value="<%=userInfo.userActualName%>" name="userActualName">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="ID" class="control-label col-md-1" >身份证号码:&nbsp;</label>
+                    <div class="col-md-5 input-group">
+                        <input id="ID" type="text" class="form-control" placeholder="请输入身份证号码" value="<%=userInfo.usernameIDNum%>" name="usernameIDNum">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-credit-card"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dtp_input2" class="control-label col-md-1 ">生日：&nbsp;</label>
+                    <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control"  type="text" value="<%=userInfo.userBirthDay%>" name="userBirthDay">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar" onclick="getDate()"></span></span>
+                    </div>
+                    <input type="hidden" id="dtp_input2" value="" /><br/>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-1"></div>
+                    <input type="reset" class="btn btn-primary ml10">
+                    <input type="submit" class="btn btn-danger" value="保存">
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="deliver_address.html">
+    <div class="content  col-md-12">
+        <div class="page-header">
+            <h1>收货地址</h1>
+        </div>
+        <div class="address_info">
+                <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="city-picker3" class="control-label col-md-1">所在地区：&nbsp;</label>
+                            <div>
+                                <input id="city-picker3" class="form-control" readonly type="text"data-toggle="city-picker" onclick="getCity()" style="width: 20%">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-1"></div>
+                            <button class="btn btn-primary btn-sm" id="reset" type="button">重置</button>
+                            <button class="btn btn-danger btn-sm ml10" id="destroy" type="button">确定</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="detail-address" class="control-label col-md-1">详细地址：&nbsp;</label>
+                            <div class="col-md-5 input-group">
+                                <textarea id="detail-address" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="postalNum" class="control-label col-md-1">邮政编码：&nbsp;</label>
+                            <div class="col-md-5 input-group">
+                                <input type="text" id="postalNum" class="form-control" placeholder="如您不清楚邮递区号，请填写000000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipientName" class="control-label col-md-1">收件人姓名：&nbsp;</label>
+                            <div class="col-md-5 input-group">
+                                <input type="text" id="recipientName" class="form-control" placeholder="长度不能超过10个字符">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNum" class="control-label col-md-1">手机号码：&nbsp;</label>
+                            <div class="col-md-5 input-group">
+                                <input type="text" id="phoneNum" class="form-control" placeholder="请输入手机号码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="defaultAddress" class="control-label col-md-1"></label>
+                            <div class="col-md-5 input-group">
+                                <input type="checkbox" id="defaultAddress">&nbsp;&nbsp;设置为默认收货地址
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-1"></div>
+                            <input type="reset" class="btn btn-primary">
+                            <input type="submit" class="btn btn-danger ml10" value="保存">
+                        </div>
+                </form>
+        </div>
+        <div>
+            <div class="page-header">
+                <h3>已保存收货地址</h3>
+            </div>
+            <div class="col-md-10">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>收货人</th>
+                        <th>所在地区</th>
+                        <th>详细地址</th>
+                        <th>邮编</th>
+                        <th>电话/手机</th>
+                        <th>操作</th>
+                        <th>默认地址</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="active">
+                            <td>匡鹏飞</td>
+                            <td>重庆 重庆市 南岸区</td>
+                            <td>重庆市南岸区重庆邮电大学崇文路2号</td>
+                            <td>400065</td>
+                            <td>18883846762 </td>
+                            <td><a href="#">修改</a>&nbsp;||&nbsp;<a href="#">删除</a></td>
+                            <td><button class="btn btn-danger btn-sm">设为默认地址</button></td>
+                        </tr>
+                        <tr class="active">
+                            <td>余薇</td>
+                            <td>重庆 重庆市 南岸区</td>
+                            <td>重庆市南岸区重庆邮电大学崇文路2号</td>
+                            <td>400065</td>
+                            <td>18883866970</td>
+                            <td><a href="#">修改</a>&nbsp;||&nbsp;<a href="#">删除</a></td>
+                            <td><span class="glyphicon glyphicon-map-marker"></span> <span>默认地址</span></td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="changePassword.html">
+    <div class="content  col-md-12">
+        <div class="page-header">
+            <h1>修改登录密码</h1>
+        </div>
+        <div class="">
+            <form role="form" class="form-horizontal ">
+                <div class="form-group">
+                    <label for="oldPassword" class="control-label col-md-1">现在的密码：&nbsp;</label>
+                    <div class="input-group col-md-5">
+                        <input id="oldPassword" type="password" class="form-control" placeholder="请输入原密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword" class="control-label col-md-1">设置新密码：&nbsp;</label>
+                    <div class="input-group col-md-5">
+                        <input id="newPassword" type="password" class="form-control" placeholder="请输入新密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="repeatNewPassword" class="control-label col-md-1">重复新密码：&nbsp;</label>
+                    <div class="input-group col-md-5">
+                        <input id="repeatNewPassword" type="password" class="form-control" placeholder="请重复新密码">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="verificationCode" class="control-label col-md-1">验证码：&nbsp;</label>
+                    <div class="input-group col-md-5">
+                        <input id="verificationCode" type="password" class="form-control" placeholder="请输入验证码">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary msgs msgsOne" type="button" onclick="getVerificationCodeOne()">获取验证码</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-1"></div>
+                    <input type="reset" class="btn btn-primary" value="取消">
+                    <input type="submit" class="btn btn-danger ml10" value="保存">
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="bindPhone.html">
+    <div class="content  col-md-12">
+        <div class="page-header">
+            <h1>手机绑定</h1>
+        </div>
+        <div class="panel-group">
+            <div class="phoneBind">
+                <div class="">
+                    <div class="col-md-1" style="width: 10%">
+                        <h5>手机没绑定？</h5>
+                    </div>
+                    <button id="phoneBind_btn" class="btn btn-primary" data-toggle="collapse" href="#collapseOne">
+                        点击绑定
+                    </button>
+                </div>
+                <div class="panel panel-default col-md-10" id="phoneBind">
+
+                    <div id="collapseOne" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="bindPhoneNum" class="control-label col-md-1" >手机号码:&nbsp;</label>
+                                    <div class="col-md-5 input-group">
+                                        <input id="bindPhoneNum" type="text" class="form-control" placeholder="请输入要绑定的手机号码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bindPassword" class="control-label col-md-1" >登录密码:&nbsp;</label>
+                                    <div class="col-md-5 input-group">
+                                        <input id="bindPassword" type="text" class="form-control" placeholder="请输入登录密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bindVerificationCode" class="control-label col-md-1" >验证码:&nbsp;</label>
+                                    <div class="col-md-5 input-group">
+                                        <input id="bindVerificationCode" type="text" class="form-control" placeholder="请输入验证码">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-primary msgs msgs1 msgsTwo" type="button" onclick="getVerificationCodeTwo()">获取验证码</button>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-1"></div>
+                                    <input id="phoneBind_cancel" type="reset" class="btn btn-primary" value="重置">
+                                    <input type="submit" class="btn btn-danger ml10" value="绑定手机">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="ModifyPhoneBinding">
+                <div class="">
+                    <div class="col-md-1" style="width:10%">
+                        <h5>手机已绑定？</h5>
+                    </div>
+                    <button id="ModifyPhoneBinding_btn" class="btn btn-danger" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                        点击修改
+                    </button>
+                </div>
+                <div class="panel panel-default col-md-10" id="ModifyPhoneBinding">
+
+                    <div id="collapseTwo" class="panel-collapse collapse ">
+                        <div class="panel-body">
+                            <form role="form" class="form-horizontal" action="">
+                                <div class="form-group">
+                                    <label for="ModifyPhoneBindPhoneNum" class="control-label col-md-1" >已绑手机:&nbsp;</label>
+                                    <div class="col-md-5 input-group">
+                                        <input id="ModifyPhoneBindPhoneNum" type="text" class="form-control" placeholder="请输入已绑定的手机号码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ModifyPhoneBindVC" class="control-label col-md-1" >验证码:&nbsp;</label>
+                                    <div class="col-md-5 input-group">
+                                        <input id="ModifyPhoneBindVC" type="text" class="form-control" placeholder="请输入已绑定手机验证码">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-primary msgs msgsThree" type="button" onclick="getVerificationCodeThree()">获取验证码</button>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ModifyPhoneBindingPhoneNum" class="control-label col-md-1" >绑定手机:&nbsp;</label>
+                                    <div class="col-md-5 input-group">
+                                        <input id="ModifyPhoneBindingPhoneNum" type="text" class="form-control" placeholder="请输入要绑定的手机号码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ModifyPhoneBindingVC" class="control-label col-md-1" >验证码:&nbsp;</label>
+                                    <div class="col-md-5 input-group">
+                                        <input id="ModifyPhoneBindingVC" type="text" class="form-control" placeholder="请输入要绑定手机的验证码">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-primary msgs msgsFour" type="button" onclick="getVerificationCodeFour()">获取验证码</button>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ModifyPhoneBindingPassword" class="control-label col-md-1" >登录密码:&nbsp;</label>
+                                    <div class="col-md-5 input-group">
+                                        <input id="ModifyPhoneBindingPassword" type="text" class="form-control" placeholder="请输入登录密码">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-1"></div>
+                                    <input id="ModifyPhoneBinding_cancel" type="reset" class="btn btn-primary" value="重置">
+                                    <input type="submit" class="btn btn-danger ml10" value="修改绑定">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="alipay.html">
+    <div class="content col-md-12">
+        <div class="page-header">
+            <h1>支付宝绑定</h1>
+        </div>
+        <div class="well well-sm col-md-10">
+            <span class="glyphicon glyphicon-check span_well"></span>
+            <h3 class="ml10" style="float: left">已绑定支付宝账户:</h3>
+            <h3 class="aliPay">1633****86@qq.com</h3>
+            <a href="javascript:void(0)" class="btn btn-primary btn-sm ml200" style="margin-top: 15px">进入支付宝</a>
+            <a href="javascript:void(0)" class="btn btn-danger btn-sm ml20" style="margin-top: 15px">更换支付宝</a>
+        </div>
+        <div class="col-md-10">
+            <table class="table table-striped table-bordered table-hover">
+                <tbody>
+                <tr>
+                    <th>邮箱</th>
+                    <td>1633****86@qq.com</td>
+                    <td><button class="btn btn-primary btn-sm">查看</button></td>
+                </tr>
+                <tr>
+                    <th>绑定手机</th>
+                    <td>188*****762</td>
+                    <td><button class="btn btn-danger btn-sm">修改</button></td>
+                </tr>
+                <tr>
+                    <th>账户类型</th>
+                    <td>个人账户</td>
+                    <td><button class="btn btn-primary btn-sm">查看</button></td>
+                </tr>
+                <tr>
+                    <th>实名认证</th>
+                    <td>匡** | 5****************X 已认证</td>
+                    <td><button class="btn btn-primary btn-sm">查看</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="weibo.html">
+    <div class="content  col-md-12">
+        <div class="page-header">
+            <h1>微博绑定</h1>
+        </div>
+        <div class="well well-sm col-md-10">
+            <span class="glyphicon glyphicon-leaf weibo_span"></span>
+            <p class="weibo_p ml20">绑定微博帐号，可以方便地将您在淘宝中看到的内容分享给微博上的朋友们。
+                绑定成功，您还可以在微博上发现更多宝贝，快速购买哦!</p>
+        </div>
+        <div class="title lead col-md-5"><span class="glyphicon glyphicon-check weibo_check"></span> 检测到您已注册微博，请输入密码</div>
+        <div class="clearfix">
+            <form id="weibo_bind" class="form-horizontal" role="form">
+                <div class="col-md-1">
+                    <img src="images/info/facebook.png" class="thumbnail img-responsive mb3">
+                    <button class="btn btn-primary btn-sm center-block">点击进入微博</button>
+                </div>
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label for="weibo_name" class="control-label col-md-2" >微博昵称:&nbsp;</label>
+                        <div class="col-md-2 input-group">
+                            <input id="weibo_name" type="text" value="KunagPF" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="weibo_id" class="control-label col-md-2" >微博账号:&nbsp;</label>
+                        <div class="col-md-2 input-group">
+                            <input id="weibo_id" type="text" value="1633397286@qq.com" class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="weibo_id" class="control-label col-md-2" >请输入密码:&nbsp;</label>
+                        <div class="col-md-2 input-group">
+                            <input id="weibo_password" type="password"  class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" ></label>
+                        <button id="bind_other_weibo" class="btn btn-warning btn-sm" onclick="bindOtherWeibo()">绑定其他微博账号</button>
+                        <button class="btn btn-primary btn-sm ml10">重置</button>
+                        <button class="btn btn-danger btn-sm ml10">绑定</button>
+                    </div>
+                </div>
+            </form>
+            <form id="weibo_bind_other" class="form-horizontal" role="form" style="display: none">
+                <div class="col-md-1">
+                    <img src="images/info/weibo.jpg" class="thumbnail img-responsive weibo_avatar">
+                    <button class="btn btn-primary btn-sm center-block">进入微博主页</button>
+                </div>
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label for="weiboBind_id" class="control-label col-md-2" >微博账号:&nbsp;</label>
+                        <div class="col-md-2 input-group">
+                            <input id="weiboBind_id" type="text" class="form-control">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="weiboBind_password" class="control-label col-md-2" >密码:&nbsp;</label>
+                        <div class="col-md-2 input-group">
+                            <input id="weiboBind_password" type="password" class="form-control">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="weiboBind_password" class="control-label col-md-2" >验证码:&nbsp;</label>
+                        <div class="col-md-2 input-group">
+                            <div id="drag"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2" ></label>
+                        <input type="reset" class="btn btn-primary" value="重置">
+                        <input type="button" class="btn btn-primary ml10" value="返回" onclick="weiboBack()">
+                        <input type="submit" class="btn btn-danger ml10" value="绑定">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="share.html">
+    <div class="content col-md-12">
+        <div class="page-header">
+            <h1>分享绑定</h1>
+        </div>
+        <div class="well well-sm col-md-10">
+            <span class="glyphicon glyphicon-share weibo_span"></span>
+            <p class="weibo_p ml20">绑定主流社交网站账号，可以快速地将你在淘宝中觉得有趣的内容分享给相应网站上的朋友们。
+                赶紧开始你的分享之旅吧!</p>
+        </div>
+        <div class="clearfix">
+            <div id="renren" class="col-md-12">
+                <form class="form-horizontal" role="form">
+                    <div class="col-md-1">
+                        <img src="images/info/renren.jpg" class="thumbnail img-responsive mb5">
+                        <button class="btn btn-primary btn-sm center-block">进入人人主页</button>
+                    </div>
+                    <div id="bind_renren" class="renren_bind_tip col-md-9">
+                        <div class="well well-sm renren_bind_tip_p">
+                            <p>允许 淘宝网 进行以下操作：</p><br>
+                            <input type="checkbox" disabled checked>&nbsp;获取你的个人信息和好友关系<br>
+                            <input type="checkbox" disabled checked>&nbsp;同步以下内容到人人网<br>
+                            <input type="checkbox">&nbsp;成为公共主页的关注者
+                        </div>
+                        <button class="btn btn-primary btn-sm mb10" onclick="bindRenRen()">马上绑定</button>
+                    </div>
+                    <div id="renren_info" class="col-md-11" style="display: none">
+                        <div class="form-group">
+                            <label for="share_renren_id" class="control-label col-md-1">账号：&nbsp;</label>
+                            <div class="input-group col-md-2">
+                                <input id="share_renren_id" type="text" class="form-control" placeholder="邮箱/手机号/用户名">
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="share_renren_pwd" class="control-label col-md-1">密码：&nbsp;</label>
+                            <div class="input-group col-md-2">
+                                <input id="share_renren_pwd" type="text" class="form-control" placeholder="请输入密码">
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-1"></label>
+                            <div class="input-group col-md-2">
+                                <a href="javascript:void(0)">注册人人账号</a>
+                                <a href="javascript:void(0)" class="ml30">忘记密码?</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-1"></label>
+                            <div class="input-group col-md-2">
+                                <input type="submit" class="btn btn-primary agreed_login" value="授权并登陆">
+                                <button class="btn btn-danger ml20" onclick="backReRenBind()">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-10">
+                <hr class="clearfix">
+            </div>
+            <div class="douban">
+                <form class="form-horizontal clearfix pt50" role="form">
+                    <div class="col-md-1">
+                        <img src="images/info/douban.jpg" class="thumbnail img-responsive mb5">
+                        <button class="btn btn-primary btn-sm center-block">进入豆瓣主页</button>
+                    </div>
+                    <div id="bind_douban" class="douban_bind_tip col-md-9">
+                        <div class="well well-sm douban_bind_tip">
+                            <p>允许 淘宝网 进行以下操作：</p><br>
+                            <input type="checkbox" disabled checked>&nbsp;获取你的个人信息、好友关系<br>
+                            <input type="checkbox" disabled checked>&nbsp;获得你的个人信息，好友关系和我说<br>
+                            <input type="checkbox">&nbsp;发布或修改你的广播
+                        </div>
+                        <button class="btn btn-primary btn-sm mb10" onclick="bindDouBan()">马上绑定</button>
+                    </div>
+                    <div id="douban_info" class="col-md-11" style="display: none">
+                        <div class="form-group">
+                            <label for="share_douban_id" class="control-label col-md-1">账号：&nbsp;</label>
+                            <div class="input-group col-md-2">
+                                <input id="share_douban_id" type="text" class="form-control" placeholder="邮箱/手机号/用户名">
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="share_douban_pwd" class="control-label col-md-1">密码：&nbsp;</label>
+                            <div class="input-group col-md-2">
+                                <input id="share_douban_pwd" type="text" class="form-control" placeholder="请输入密码">
+                                <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-1"></label>
+                            <div class="input-group col-md-2">
+                                <a href="javascript:void(0)">注册豆瓣账号</a>
+                                <a href="javascript:void(0)" class="ml30">忘记密码?</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-1"></label>
+                            <div class="input-group col-md-2">
+                                <input type="submit" class="btn btn-primary agreed_login" value="授权并登陆">
+                                <button class="btn btn-danger ml20" onclick="backDouBanBind()">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="hbs.html">
+    <div class="content col-md-12">
+        <div class="page-header">
+            <h1>已填评价</h1>
+        </div>
+        <div class="">
+            <div class="panel-group col-md-10 " id="accordion">
+                <div class="panel panel-info" >
+                    <div class="panel-heading" data-toggle="collapse"  data-parent="#accordion" href="#buyerEvaluation">
+                        <p class="panel-title buyer">
+                            <span class="glyphicon glyphicon-hand-right">&nbsp;来自买家的评价</span>
+                        </p>
+                    </div>
+                    <div id="buyerEvaluation" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="list-op" id="list-op">
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;删除
+                                </button>
+                            </div>
+                            <div class="evaluationInfo mt10">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="bg-success">
+                                    <tr>
+                                        <td><input type="checkbox" class="checkAll" onclick="getAllChecked(this)"></td>
+                                        <td>订单编号</td>
+                                        <td>评价内容</td>
+                                        <td>评价人</td>
+                                        <td>商品信息</td>
+                                        <td>操作</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="checkList">
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>该商品整体不错，五星好评</td>
+                                        <td>KuangPF</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;查看</button>
+                                            <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>&nbsp;追评</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>该商品整体不错，五星好评</td>
+                                        <td>KuangPF</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;查看</button>
+                                            <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>&nbsp;追评</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>该商品整体不错，五星好评</td>
+                                        <td>KuangPF</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;查看</button>
+                                            <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>&nbsp;追评</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>该商品整体不错，五星好评</td>
+                                        <td>KuangPF</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;查看</button>
+                                            <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>&nbsp;追评</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <ul class="pagination pagination">
+                                    <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                                    <li class="active"><a href="javascript:void(0)">1</a></li>
+                                    <li><a href="javascript:void(0)">2</a></li>
+                                    <li><a href="javascript:void(0)">3</a></li>
+                                    <li><a href="javascript:void(0)">4</a></li>
+                                    <li><a href="javascript:void(0)">5</a></li>
+                                    <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+                                </ul><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group col-md-10 " id="">
+                <div class="panel panel-info" >
+                    <div class="panel-heading" data-toggle="collapse"  data-parent="#accordion" href="#otherPeopleEvaluation">
+                        <p class="panel-title buyer">
+                            <span class="glyphicon glyphicon-hand-right">&nbsp;来自卖家的评价</span>
+                        </p>
+                    </div>
+                    <div id="otherPeopleEvaluation" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="list-op">
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;删除
+                                </button>
+                            </div>
+                            <div class="evaluationInfo mt10">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="bg-success">
+                                    <tr>
+                                        <td><input type="checkbox" class="checkAll" onclick="getAllChecked(this)"></td>
+                                        <td>订单编号</td>
+                                        <td>评价内容</td>
+                                        <td>评价人</td>
+                                        <td>商品信息</td>
+                                        <td>操作</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="checkList">
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>谢谢亲的支持，我们会做的更多，欢迎下次再来！</td>
+                                        <td>Nike</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;查看</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>谢谢亲的支持，我们会做的更多，欢迎下次再来！</td>
+                                        <td>Nike</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;查看</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>谢谢亲的支持，我们会做的更多，欢迎下次再来！</td>
+                                        <td>Nike</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;查看</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>谢谢亲的支持，我们会做的更多，欢迎下次再来！</td>
+                                        <td>Nike</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span>&nbsp;查看</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <ul class="pagination pagination">
+                                    <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                                    <li class="active"><a href="javascript:void(0)">1</a></li>
+                                    <li><a href="javascript:void(0)">2</a></li>
+                                    <li><a href="javascript:void(0)">3</a></li>
+                                    <li><a href="javascript:void(0)">4</a></li>
+                                    <li><a href="javascript:void(0)">5</a></li>
+                                    <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+                                </ul><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-group col-md-10" >
+                <div class="panel panel-info" >
+                    <div class="panel-heading" data-toggle="collapse"  data-parent="#accordion" href="#sellersEvaluation">
+                        <p class="panel-title buyer">
+                            <span class="glyphicon glyphicon-hand-right">&nbsp;给他人的评价</span>
+                        </p>
+                    </div>
+                    <div id="sellersEvaluation" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="list-op">
+                                <button type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;删除
+                                </button>
+                            </div>
+                            <div class="evaluationInfo mt10">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="bg-success">
+                                    <tr>
+                                        <td><input type="checkbox" class="checkAll" onclick="getAllChecked(this)"></td>
+                                        <td>订单编号</td>
+                                        <td>评价内容</td>
+                                        <td>评价人</td>
+                                        <td>商品信息</td>
+                                        <td>操作</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="checkList">
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>谢谢亲的支持，我们会做的更多，欢迎下次再来！</td>
+                                        <td>Nike</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>谢谢亲的支持，我们会做的更多，欢迎下次再来！</td>
+                                        <td>Nike</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>谢谢亲的支持，我们会做的更多，欢迎下次再来！</td>
+                                        <td>Nike</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                        <td>E1234567</td>
+                                        <td>谢谢亲的支持，我们会做的更多，欢迎下次再来！</td>
+                                        <td>Nike</td>
+                                        <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span>&nbsp;编辑</button>
+                                            <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span>&nbsp;删除</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <ul class="pagination pagination">
+                                    <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                                    <li class="active"><a href="javascript:void(0)">1</a></li>
+                                    <li><a href="javascript:void(0)">2</a></li>
+                                    <li><a href="javascript:void(0)">3</a></li>
+                                    <li><a href="javascript:void(0)">4</a></li>
+                                    <li><a href="javascript:void(0)">5</a></li>
+                                    <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+                                </ul><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="nfo.html">
+    <div class="content col-md-12">
+        <div class="page-header">
+            <h1>未填评价</h1>
+        </div>
+        <div class="col-md-10">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="javascript:void(0)">请选择</a>
+                    </div>
+
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <select class="selectpicker" data-live-search="true" data-live-search-placeholder="请输入条件" data-actions-box="true">
+                                <optgroup label="时间选择">
+                                    <option>一个月之内</option>
+                                    <option>三个月之内</option>
+                                    <option>一年之内</option>
+                                    <option>全部</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="请输入商品名称" name="">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="nfoSearch()">搜索</button>
+                    </form>
+
+                </div>
+                <!-- .container-fluid -->
+            </nav>
+        </div>
+        <div id="nfo" class="mt10 col-md-10" style="display: none">
+            <table class="table table-bordered table-hover">
+                <thead class="bg-success">
+                <tr>
+                    <td><input type="checkbox" class="checkAll" onclick="getAllChecked(this)"></td>
+                    <td>订单编号</td>
+                    <td>评价内容</td>
+                    <td>评价人</td>
+                    <td>商品信息</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody class="checkList">
+                <tr>
+                    <td><input type="checkbox" onclick="getChecked(this)"></td>
+                    <td>E1234567</td>
+                    <td>主人有点懒，暂无评价</td>
+                    <td>KuangPF</td>
+                    <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>&nbsp;前去评价</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" onclick="getChecked(this)"></td>
+                    <td>E1234567</td>
+                    <td>主人有点懒，暂无评价</td>
+                    <td>KuangPF</td>
+                    <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>&nbsp;前去评价</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" onclick="getChecked(this)"></td>
+                    <td>E1234567</td>
+                    <td>主人有点懒，暂无评价</td>
+                    <td>KuangPF</td>
+                    <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>&nbsp;前去评价</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" onclick="getChecked(this)"></td>
+                    <td>E1234567</td>
+                    <td>主人有点懒，暂无评价</td>
+                    <td>KuangPF</td>
+                    <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-pencil"></span>&nbsp;前去评价</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <ul class="pagination">
+                <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                <li class="active"><a href="javascript:void(0)">1</a></li>
+                <li><a href="javascript:void(0)">2</a></li>
+                <li><a href="javascript:void(0)">3</a></li>
+                <li><a href="javascript:void(0)">4</a></li>
+                <li><a href="javascript:void(0)">5</a></li>
+                <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+            </ul><br>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="grade.html">
+    <div class="content col-md-12">
+        <div class="page-header">
+            <h1>评价等级</h1>
+        </div>
+        <div class="panel-group col-md-10">
+            <div class="panel panel-success">
+                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#gradeOne">
+                    <div class="gradeInfo clearfix" >
+                        <p class="glyphicon glyphicon-thumbs-up"></p>
+                        好评
+                        <p class="glyphicon glyphicon-star"></p>
+                        <p class="glyphicon glyphicon-star"></p>
+                        <p class="glyphicon glyphicon-star"></p>
+                        <p class="glyphicon glyphicon-star"></p>
+                        <p class="glyphicon glyphicon-star"></p>
+                    </div>
+                </div>
+                <div id="gradeOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table table-bordered table-hover">
+                            <thead class="bg-success">
+                            <tr>
+                                <td><input type="checkbox" class="checkAll" onclick="getAllChecked(this)"></td>
+                                <td>订单编号</td>
+                                <td>评价内容</td>
+                                <td>评价等级</td>
+                                <td>评价人</td>
+                                <td>商品信息</td>
+                                <td>评价时间</td>
+                            </tr>
+                            </thead>
+                            <tbody class="checkList">
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>该商品整体不错，五星好评</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>该商品整体不错，五星好评</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>该商品整体不错，五星好评</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>该商品整体不错，五星好评</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <ul class="pagination pagination">
+                            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                            <li class="active"><a href="javascript:void(0)">1</a></li>
+                            <li><a href="javascript:void(0)">2</a></li>
+                            <li><a href="javascript:void(0)">3</a></li>
+                            <li><a href="javascript:void(0)">4</a></li>
+                            <li><a href="javascript:void(0)">5</a></li>
+                            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+                        </ul><br>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-warning" style="margin-top: 20px">
+                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#gradeTwo">
+                    <div class="gradeInfo clearfix" >
+                        <p class="glyphicon glyphicon-hand-right"></p>
+                        中评
+                        <p class="glyphicon glyphicon-star"></p>
+                        <p class="glyphicon glyphicon-star"></p>
+                        <p class="glyphicon glyphicon-star"></p>
+                        <p class="glyphicon glyphicon-star-empty"></p>
+                        <p class="glyphicon glyphicon-star-empty"></p>
+                    </div>
+                </div>
+                <div id="gradeTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table table-bordered table-hover">
+                            <thead class="bg-success">
+                            <tr>
+                                <td><input type="checkbox" class="checkAll" onclick="getAllChecked(this)"></td>
+                                <td>订单编号</td>
+                                <td>评价内容</td>
+                                <td>评价等级</td>
+                                <td>评价人</td>
+                                <td>商品信息</td>
+                                <td>评价时间</td>
+                            </tr>
+                            </thead>
+                            <tbody class="checkList">
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>该商品一般，价格略贵，购买需谨慎</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>该商品一般，价格略贵，购买需谨慎</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>该商品一般，价格略贵，购买需谨慎</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>该商品一般，价格略贵，购买需谨慎</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <ul class="pagination pagination">
+                            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                            <li class="active"><a href="javascript:void(0)">1</a></li>
+                            <li><a href="javascript:void(0)">2</a></li>
+                            <li><a href="javascript:void(0)">3</a></li>
+                            <li><a href="javascript:void(0)">4</a></li>
+                            <li><a href="javascript:void(0)">5</a></li>
+                            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+                        </ul><br>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-danger" style="margin-top: 20px">
+                <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#gradeThree">
+                    <div class="gradeInfo clearfix" >
+                        <p class="glyphicon glyphicon-thumbs-down"></p>
+                        差评
+                        <p class="glyphicon glyphicon-star-empty"></p>
+                        <p class="glyphicon glyphicon-star-empty"></p>
+                        <p class="glyphicon glyphicon-star-empty"></p>
+                        <p class="glyphicon glyphicon-star-empty"></p>
+                        <p class="glyphicon glyphicon-star-empty"></p>
+                    </div>
+                </div>
+                <div id="gradeThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table table-bordered table-hover">
+                            <thead class="bg-success">
+                            <tr>
+                                <td><input type="checkbox" class="checkAll" onclick="getAllChecked(this)"></td>
+                                <td>订单编号</td>
+                                <td>评价内容</td>
+                                <td>评价等级</td>
+                                <td>评价人</td>
+                                <td>商品信息</td>
+                                <td>评价时间</td>
+                            </tr>
+                            </thead>
+                            <tbody class="checkList">
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>与描述不符，太差，不值得购买</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>与描述不符，太差，不值得购买</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>与描述不符，太差，不值得购买</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" onclick="getChecked(this)"></td>
+                                <td>E1234567</td>
+                                <td>与描述不符，太差，不值得购买</td>
+                                <td>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </td>
+                                <td>KuangPF</td>
+                                <td><a href="javascript:void(0)">耐克NIKE男子足球鞋NIKE MERCURIAL VICTORY 6 CR7 AG-PRO 男子高帮足球鞋.</a> </td>
+                                <td>
+                                    2017.04.02
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <ul class="pagination pagination">
+                            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                            <li class="active"><a href="javascript:void(0)">1</a></li>
+                            <li><a href="javascript:void(0)">2</a></li>
+                            <li><a href="javascript:void(0)">3</a></li>
+                            <li><a href="javascript:void(0)">4</a></li>
+                            <li><a href="javascript:void(0)">5</a></li>
+                            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+                        </ul><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="month.html">
+    <div class="content col-md-12">
+        <div class="page-header">
+            <h1>最近一个月</h1>
+        </div>
+        <div class="col-md-10">
+            <a class="btn btn-danger btn-sm mb10 ml15">删除所有浏览记录</a>
+            <button class="btn btn-primary btn-sm mb10 ml20" disabled><span class="glyphicon glyphicon-menu-left pagination_icon t2"></span>&nbsp;上一页</button>
+            <button class="btn btn-primary btn-sm mb10">下一页&nbsp; <span class="glyphicon glyphicon-menu-right pagination_icon t2"></span></button>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji01.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji01.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji01.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji01.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji01.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji01.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block a_none">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="pagination pagination ml15">
+                <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                <li class="active"><a href="javascript:void(0)">1</a></li>
+                <li><a href="javascript:void(0)">2</a></li>
+                <li><a href="javascript:void(0)">3</a></li>
+                <li><a href="javascript:void(0)">4</a></li>
+                <li><a href="javascript:void(0)">5</a></li>
+                <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+            </ul><br>
+        </div>
+    </div>
+</script>
+<script type="text/ng-template" id="all.html">
+    <div class="content col-md-12">
+        <div class="page-header">
+            <h1>所有的足记</h1>
+        </div>
+        <div class="col-md-10">
+            <a class="btn btn-danger btn-sm mb10 ml15">删除所有浏览记录</a>
+            <button class="btn btn-primary btn-sm mb10 ml20" disabled><span class="glyphicon glyphicon-menu-left pagination_icon t2"></span>&nbsp;上一页</button>
+            <button class="btn btn-primary btn-sm mb10">下一页&nbsp; <span class="glyphicon glyphicon-menu-right pagination_icon t2"></span></button>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji02.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji02.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji02.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji02.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji02.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji02.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block a_none">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="thumbnail">
+                    <img src="images/info/zuji02.jpg" class="img-responsive">
+                    <hr class="mt0 mb0">
+                    <div class="caption">
+                        <p class="zuji_price">￥ 599</p>
+                        <div class="info_zuji">
+                            <a href="javascript:void(0)" class="clearfix block a_none">耐克Nike男子足球鞋...</a>
+                        </div>
+                        <div class="operation_zuji mt10">
+                            <a class="btn btn-primary btn-sm clearfix">购买</a>
+                            <a class="btn btn-warning btn-sm clearfix">找相似</a>
+                            <a class="btn btn-danger btn-sm clearfix">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 ml15">
+            <ul class="pagination pagination">
+                <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+                <li class="active"><a href="javascript:void(0)">1</a></li>
+                <li><a href="javascript:void(0)">2</a></li>
+                <li><a href="javascript:void(0)">3</a></li>
+                <li><a href="javascript:void(0)">4</a></li>
+                <li><a href="javascript:void(0)">5</a></li>
+                <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+            </ul><br>
+        </div>
+    </div>
+</script>
+<script>
+    $('#drag').drag();
+</script>
+<!--header-->
+<% include ./common/footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,47 @@
+.SEList {
+    background-color: #fff;
+    padding-left: 0;
+}
+.listText h4 a {
+    font-size: 1em;
+    color: #000;
+}
+.SECoverTitle {
+    margin-top: 10px;
+}
+.SECoverContent {
+    margin-top: 15px;
+    font-family: 'Lantinghei SC', 'Microsoft Yahei';
+    line-height: 25px;
+    color: #666;
+}
+.listText a {
+    font-family: 'Lantinghei SC', 'Microsoft Yahei';
+}
+.cover-img {
+    padding-right:0;
+    padding-left: 0;
+}
+
+.SELabel a{
+    width: auto;
+    height: 25px;
+    line-height: 22px;
+    margin-right: 5px;
+    padding: 2px 5px;
+    color: #999;
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+.aHover {
+    background: #666;
+    color: #FFF;
+    border-radius: 3px;
+}
+.aHover:hover {
+    opacity: 0.8;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="dailyCommunicationApp">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+
+    <!--jQuery-->
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+    <link type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link type="text/css" href="/stylesheets/common.css" rel="stylesheet">
+    <link type="text/css" href="/stylesheets/daily-communication.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/dailyCommunicationCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+</head>
+<body >
+<%include ./common/header.ejs%>
+<div class="container mt30 minh700" ng-controller="dailyCommunicationController">
+    <form role="form" class="form-horizontal col-md-6">
+        <div class="input-group clearfix mb20">
+            <input type="text" class="form-control" placeholder="请输入主题关键字进行搜索" name="">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <button type="submit" class="btn btn-primary ml25">搜索</button>
+        </div>
+    </form>
+
+    <div class="col-md-10">
+        <button class="btn btn-danger" data-toggle="modal" data-target="#publishTopicModal">发表主题</button>
+        <form action="/fan-forum/Daily-communication/topics-published" method="post">
+            <div class="modal fade" id="publishTopicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-hidden="true">×
+                            </button>
+                            <h5 class="modal-title" id="myModalLabel">发表主题</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="postalNum" class="control-label">主题标题：&nbsp;</label>
+                                <div class="col-md-10 input-group">
+                                    <input type="text" id="postalNum" class="form-control" name="topicExchangeTitle">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="detail-address" class="control-label">主题内容：&nbsp;</label>
+                                <div class="col-md-10 input-group">
+                                    <textarea id="detail-address" class="form-control" name="topicExchangeContent"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <input type="reset" class="btn btn-default" value="重置"></input>
+                            <input type="submit" class="btn btn-primary" value="发表主题"></input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <%topicExchangeDetails.forEach(function(topicExchangeDetail){%>
+    <div class="col-md-10 mt30 topicExchange">
+        <div class="topicExchangeTitle tdn mb5"><a href=""><%=topicExchangeDetail.topicExchangeTitle%></a></div>
+        <div class="topicExchangeContentPic mb5">
+            <ul>
+                <li><img src="<%=topicExchangeDetail.topicExchangeCoverPicSrc01%>"></li>
+                <li><img src="<%=topicExchangeDetail.topicExchangeCoverPicSrc02%>"></li>
+                <li><img src="<%=topicExchangeDetail.topicExchangeCoverPicSrc03%>"></li>
+            </ul>
+        </div>
+        <div class="mb5">
+            <div class="inline-block mr30">
+                <span class="glyphicon glyphicon-user inline-block"></span>
+                <p class="inline-block ml10"><%=topicExchangeDetail.topicExchangeUser%></p>
+            </div>
+            <div class="inline-block mr30">
+                <span class="glyphicon glyphicon-eye-open inline-block"></span>
+                <p class="inline-block ml10"><%=topicExchangeDetail.topicExchangeViews%></p>
+            </div>
+            <div class="inline-block mr30">
+                <span class="glyphicon glyphicon-comment inline-block"></span>
+                <p class="inline-block ml10"><%=topicExchangeDetail.topicExchangeTalkNum%></p>
+            </div>
+            <div class="inline-block mr30">
+                <span class="glyphicon glyphicon-time inline-block"></span>
+                <p class="inline-block ml10"><%=topicExchangeDetail.topicExchangeDate%></p>
+            </div>
+        </div>
+    </div>
+    <%})%>
+    <!--分页-->
+    <div class="col-md-12 mt30">
+        <ul class="pagination pagination">
+            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+            <li class="active"><a href="javascript:void(0)">1</a></li>
+            <li><a href="javascript:void(0)">2</a></li>
+            <li><a href="javascript:void(0)">3</a></li>
+            <li><a href="javascript:void(0)">4</a></li>
+            <li><a href="javascript:void(0)">5</a></li>
+            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+        </ul><br>
+    </div>
+</div>
+<%include ./common/footer.ejs%>
+</body>
+</html>

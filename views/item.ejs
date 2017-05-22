@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html ng-app="itemApp">
+<head>
+	<title><%=jerseyTitle%></title>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="/images/logo.ico" type="">
+	<!--jQuery-->
+	<script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+
+	<!--bootstrap-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css" media="all" />
+
+	<!--Style-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css"  media="all" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/common.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/flexslider.css"media="screen" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/item.css" >
+
+	<!--AngularJS-->
+	<script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+
+	<!--js-->
+	<script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jQuery_Plugin/imagezoom.js"></script>
+	<script type="text/javascript" src="/javascripts/jQuery_Plugin/jquery.flexslider.js"></script>
+	<script type="text/javascript" src="/javascripts/views_js/item.js"></script>
+
+	<!--Controllers-->
+	<script type="text/javascript" src="/controllers/itemCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+
+</head>
+<body>
+<!--header-->
+<%include ./common/header.ejs%>
+<div class="container mt30" ng-controller="itemController">
+    <%if(addShoppingCartSucceed) {%>
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">
+			x
+		</button>
+		加入购物车成功！！
+	</div>
+    <% }%>
+	<div class="single">
+		<div class="col-md-10 top-in-single">
+			<div class="col-md-5 single-top">
+				<div class="flexslider">
+					<ul class="slides">
+						<li data-thumb="<%=item.itemSinglePicOneSrc01%>">
+							<div class="thumb-image"> <img src="<%=item.itemSinglePicOneSrc02%>" data-imagezoom="true" class="img-responsive"> </div>
+						</li>
+						<li data-thumb="<%=item.itemSinglePicTwoSrc01%>">
+							<div class="thumb-image"> <img src="<%=item.itemSinglePicTwoSrc02%>" data-imagezoom="true" class="img-responsive"> </div>
+						</li>
+						<li data-thumb="<%=item.itemSinglePicThreeSrc01%>">
+							<div class="thumb-image"> <img src="<%=item.itemSinglePicThreeSrc02%>" data-imagezoom="true" class="img-responsive"> </div>
+						</li>
+						<li data-thumb="<%=item.itemSinglePicFourSrc01%>">
+							<div class="thumb-image"> <img src=<%=item.itemSinglePicFourSrc02%> data-imagezoom="true" class="img-responsive"> </div>
+						</li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="col-md-7 single-top-in">
+				<div class="single-para">
+					<h1 class="item-title mt10"><%=item.itemSingleTitle%></h1>
+					<div class="summary-price-wrap col-md-12 mt10">
+						<div class="item-price mt10	">
+							<p class="item-price inline-block" ng-bind="itemParaPriceLabel"></p>
+							<p class="item-price inline-block color-tbc">￥<%=item.itemPrice%></p>
+							<div class="price-reduction right pointer" ng-bind="itemParaPriceReduction"></div>
+						</div>
+						<div class="promotion-wrap mt10">
+							<div class="">
+								<p class="item-promotion-price inline-block" ng-bind="itemParaPromotionLabel"></p>
+								<p class="red_bg inline-block" ng-bind="itemParaManJian"></p>
+								<p class="inline-block promotion-reduce" ng-bind="itemParaManJianContent"></p>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="single-freight mt30 ml15">
+						<P class="freight inline-block" ng-bind="itemFreightLabel"></P>
+						<P class="seller-address inline-block" ng-bind="itemFreightsellerAddress"></P>
+						<P class="seller-address inline-block">&nbsp;至&nbsp;</P>
+						<P class="buyer-address inline-block" ng-bind="itemFreightBuyerAddress"><span class="glyphicon glyphicon-menu-down pointer address-down"></span> </P>
+						<P class="express-delivery inline-block ml40">快递</P>
+						<P class="express-delivery-price inline-block" ng-bind="itemFreightExpressDeliveryPrice"></P>
+					</div>
+					<hr class="hr-line ml15">
+					<div class="item-detail ml15">
+						<div class="item-sales inline-block tdn">
+							<label>月销量</label>
+							<a href="" class="monthly-sales inline-block" ng-bind="itemDetailMonthSales"></a>
+						</div>
+						<div class="inline-block tdn ml40">
+							<label>累计评价</label>
+							<a href="" class="cumulative-evaluation inline-block" ng-bind="itemDetailCumulativeEvaluation"></a>
+						</div>
+						<div class="inline-block tdn ml40">
+							<label>送积分</label>
+							<a href="" class="integral inline-block" ng-bind="itemDetailIntegral"></a>
+						</div>
+					</div>
+					<div class="clearfix"></div>
+					<div class="sale-prop mt30 ml15">
+						<dl>
+							<dt class="shoe-size inline-block">尺码</dt>
+							<dd class="inline-block shoe-size-num ml25">
+								<ul>
+									<%for(var i=0;i<size.length;i++) {%>
+									<li class="normal"><a href="#"><span class="blod"><%=size[i]%></span></a> </li>
+									<%}%>
+								</ul>
+							</dd>
+						</dl>
+					</div>
+					<div class="ml15">
+						<dl>
+							<dt class="inline-block">数量</dt>
+							<dd class="inline-block ml25"><input type="number" value="1" lass="form-control" min="1" max="10" class="tac"></dd>
+							<span>&nbsp;件</span>
+							<em class="ml40" ng-bind="itemDetalInStock"></em>
+						</dl>
+					</div>
+					<div class="ml15">
+						<div class="inline-block"><a href="/item/<%=item.itemSort%>/<%=item.id%>/order-confirm" class="btn btn-primary">立即购买</a></div>
+						<div class="inline-block ml40"><a href="/item/<%=item.itemSort%>/<%=item.id%>/add-ShoppingCart" class="btn btn-danger"><span class="glyphicon glyphicon-shopping-cart
+						mr10"></span>加入购物车</a> </div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+			<hr class="hr-line ml15">
+		</div>
+		<div class="col-md-10 ml15 mt30">
+			<label class="control-label item-evaluation">商品评价：</label>
+			<table class="table table-bordered table-hover">
+				<tbody>
+				<% itemEvaluations.forEach(function(itemEvaluation){%>
+				<tr>
+					<td>
+						<div class="evaluation-content"><%=itemEvaluation.evaluationContnet%></div>
+						<div class="evaluation-time pt15">评价时间:<em><%=itemEvaluation.evaluationDate%></em></div>
+					</td>
+					<td>
+						<p>颜色分类：<%=itemEvaluation.evaluationItemSort%></p>
+						<p>尺寸：<%=itemEvaluation.evaluationItemSize%></p>
+					</td>
+					<td>
+						<div class="inline-block"><%=itemEvaluation.evaluationUsername%></div>
+						<span class="inline-block right">（匿名）</span>
+					</td>
+				</tr>
+				<%})%>
+				</tbody>
+			</table>
+			<ul class="pagination pagination">
+				<li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+				<li class="active"><a href="javascript:void(0)">1</a></li>
+				<li class="fy"><a href="javascript:void(0)">2</a></li>
+				<li class="fy"><a href="javascript:void(0)">3</a></li>
+				<li class="fy"><a href="javascript:void(0)">4</a></li>
+				<li class="fy"><a href="javascript:void(0)">5</a></li>
+				<li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+			</ul><br>
+		</div>
+	</div>
+</div>
+<!--footer-->
+<%include ./common/footer.ejs%>
+</body>
+</html>

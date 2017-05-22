@@ -1,0 +1,36 @@
+body {
+    background-color: #fff;
+}
+.info-item a:hover {
+    color: #F82800;
+}
+.items-list-border {
+    border: 2px solid #EDEDED;
+}
+.items-list-hover {
+    border:2px solid #F82800;
+}
+.items-list-dealNum {
+    color: #888;
+}
+.item-shop {
+    color: #888;;
+}
+.item-icons {
+    list-style-type: none;
+}
+.icon-xinpin {
+    display: inline-block;
+    background: url("../images/icons-02.png") -83px -199px no-repeat;
+    width: 16px;
+    height: 16px;
+}
+.icon-baoxian {
+    display: inline-block;
+    background: url("../images/icons-02.png") -295px -161px no-repeat;
+    width: 16px;
+    height: 16px;
+}
+.itemPriceBlod {
+    font-weight: 500;
+}

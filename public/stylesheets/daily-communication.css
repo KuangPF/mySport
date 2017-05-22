@@ -1,0 +1,20 @@
+.modal-title {
+    font-weight: bold;
+}
+.topicExchange {
+    background-color: #fff;
+    border: 2px solid rgba(79, 79, 79, 0.3);
+    margin-left: 15px;
+}
+.topicExchangeContentPic ul {
+    list-style-type: none;
+}
+.topicExchangeContentPic ul li {
+    display: inline-block;
+    margin-right: 5px;
+}
+.topicExchangeTitle a {
+    font-size: 1.5em;
+    line-height: 40px;
+    font-family: 'Lantinghei SC', 'Microsoft Yahei';
+}

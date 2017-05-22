@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="registerApp">
+<head>
+	<title>Register</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="/images/logo.ico" type="">
+	<!--theme-style-->
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css"  media="all" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css"media="all" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/register.css"media="all">
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+	<script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/javascripts/bootstrap_plugin/bootstrapValidator.js"></script>
+	<script type="text/javascript" src="/javascripts/views_js/register.js"></script>
+
+	<!--AngularJS-->
+	<script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+
+	<!--Controllers-->
+	<script type="text/javascript" src="/controllers/registerCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+	<script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+
+</head>
+<body>
+<!--header-->
+<%include ./common/header.ejs%>
+<!---->
+
+<div class="container">
+		<div class="register" style="min-height: 500px">
+			<div class="col-md-12 ">
+				<div class="page-header">
+					<h1>注册</h1>
+				</div>
+
+				<form id="defaultForm" method="post" class="form-horizontal" action="/register">
+
+					<div class="form-group">
+						<label class="col-lg-3 control-label">账户名称</label>
+						<div class="col-lg-5">
+							<input type="text" class="form-control" name="username" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
+						<div class="col-lg-5">
+							<input type="text" class="form-control" name="email" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+						<div class="col-lg-5">
+							<input type="password" class="form-control" name="password" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-3 control-label">确认密码</label>
+						<div class="col-lg-5">
+							<input type="password" class="form-control" name="confirmPassword" />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-lg-3 control-label"></label>
+						<div class="col-lg-5">
+							<input type="checkbox" name="agree[]"><span>我已阅读并接受<a href="#">《版权声明》</a>和<a href="#">《隐私保护》</a></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-lg-9 col-lg-offset-3">
+							<button type="reset" class="btn btn-primary reset" name="reset" value="Sign up">重置</button>
+							<button type="submit" class="btn btn-primary" name="signup" value="Sign up">注册</button>
+						</div>
+					</div>
+				</form>
+			</div>
+	</div>
+</div>
+<!---->
+
+<!--footer-->
+
+<%include ./common/footer.ejs%>
+</body>
+
+</html>

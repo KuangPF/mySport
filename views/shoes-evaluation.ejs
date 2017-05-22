@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shoesEvaluationApp">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+
+    <!--jQuery-->
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+    <link type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link type="text/css" href="/stylesheets/common.css" rel="stylesheet">
+    <link type="text/css" href="/stylesheets/shoes-evaluation.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/shoesEvaluationCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+
+</head>
+<body>
+<%include ./common/header.ejs%>
+<div class="container mt30 minh700" ng-controller="shoesEvaluationController">
+    <form role="form" class="form-horizontal col-md-6">
+        <div class="input-group clearfix mb20">
+            <input type="text" class="form-control" placeholder="请输入球鞋名称进行搜索" name="">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            <button type="submit" class="btn btn-primary ml25">搜索</button>
+        </div>
+    </form>
+    <% SEItemLists.forEach(function(SEItemList){%>
+    <div class="col-md-10 SEList ml15 mb20">
+        <div class="col-md-3 cover-img"><a href="/shoes-evaluation/detail/<%=SEItemList._id%>"><img src="<%=SEItemList.SECoverPicSrc%>" class="img-responsive"></a> </div>
+        <div class="col-md-8 listText inline-block">
+            <h4 class="tdn block SECoverTitle">
+                <a href="/shoes-evaluation/detail/<%=SEItemList._id%>"><%=SEItemList.SECoverTile%></a>
+            </h4>
+            <p class="SECoverContent tdn"><%=SEItemList.SECoverContent%><a href="/shoes-evaluation/detail/<%=SEItemList._id%>">更多>></a> </p>
+        </div>
+        <div class="col-md-7 SELabel inline-block mt5">
+            <a href="" class="aHover"><%=SEItemList.SELabel[0]%></a>
+            <%for(var i=1;i<SEItemList.SELabel.length;i++) {%>
+            <a href=""><%=SEItemList.SELabel[i]%></a>
+            <%}%>
+        </div>
+        <div class="col-md-2 inline-block mt5 right">
+            <span class="glyphicon glyphicon-time "></span><P class="inline-block ml10"><%=SEItemList.SECoverDate%></P>
+        </div>
+    </div>
+    <%})%>
+    <!--分页-->
+    <div class="col-md-12 mt30">
+        <ul class="pagination pagination">
+            <li class="disabled"><span class="glyphicon glyphicon-menu-left pagination_icon"></span> </li>
+            <li class="active"><a href="javascript:void(0)">1</a></li>
+            <li><a href="javascript:void(0)">2</a></li>
+            <li><a href="javascript:void(0)">3</a></li>
+            <li><a href="javascript:void(0)">4</a></li>
+            <li><a href="javascript:void(0)">5</a></li>
+            <li><span class="glyphicon glyphicon-menu-right pagination_icon"></span> </li>
+        </ul><br>
+    </div>
+</div>
+<%include ./common/footer.ejs%>
+</body>
+</html>
