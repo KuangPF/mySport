@@ -12,6 +12,7 @@ mongoose.Promise = global.Promise;
 var itemSchema=require('../models/database/itemSchema');
 var shoppingCartSchema=require('../models/shoopingCart/shoppingCartSchema');
 var userAddressSchema=require('../models/userAddress/userAddress');
+var orderSchema=require('../models/order/orderSchema');
 var db=mongoose.createConnection('mongodb://127.0.0.1:27017/mySport');
 
 
@@ -116,18 +117,15 @@ router.get('/*/order-confirm', function(req, res, next) {
                             itemInfo:itemInfo,
                             userAddress:userInfo.userAddress
                         });
-
                     }
                 });
             },function (err) {
 
             });
-
         }
     } else {
         res.send('no cookies');
     }
-
 });
 
 
@@ -204,6 +202,47 @@ router.get('/*/pay', function(req, res, next) {
         if(usernameCookie==undefined) {
             res.send('请先登录！！');
         } else {
+            //添加订单记录
+            function getOrderDetailInfo() {
+                var deferred=q.defer();
+                mongooseItemModel.find({_id:itemID},function (err,result) {
+                    if(err) {
+                        console.log(err);
+                        deferred.reject(err);
+                    } else {
+                        deferred.resolve(result);
+                    }
+                });
+                return deferred.promise;
+            }
+
+            getOrderDetailInfo().then(function (orderDetailInfo) {
+
+                var orderDetailInfoDoc={
+                    username:usernameCookie,
+                    orderDate:new Date().toLocaleDateString(),
+                    orderShopTitle:orderDetailInfo[0].itemShopTitle,
+                    orderPicSrc:orderDetailInfo[0].itemSinglePicOneSrc01,
+                    orderItemTitle:orderDetailInfo[0].itemTitle,
+                    orderItemSize:orderDetailInfo[0].itemSize[1],
+                    orderItemPrice:orderDetailInfo[0].itemPrice,
+                    orderItemNum:1,
+                    orderItemPay:orderDetailInfo[0].itemPrice
+                };
+
+                var mongooseOrderModel=db.model('mongoose',orderSchema,'order');
+                mongooseOrderModel.create(orderDetailInfoDoc,function (err) {
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        console.log('save ok!');
+                    }
+                });
+            },function (err) {
+                console.log(err);
+            });
+
+
             mongooseItemModel.find({_id:itemID},function (err,result) {
                 if(err) {
                     console.log(err);
@@ -216,6 +255,7 @@ router.get('/*/pay', function(req, res, next) {
                     })
                 }
             });
+
         }
     } else {
         res.send('no cookies');
