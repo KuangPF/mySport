@@ -2,7 +2,7 @@
 <html lang="en" ng-app='myAppOrder'>
 <head>
     <meta charset="UTF-8">
-    <title>order</title>
+    <title><%=title%></title>
     <link rel="shortcut icon" href="images/logo.ico">
     <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
 
@@ -75,18 +75,45 @@
     <div class="col-md-1"></div>
     <script type="text/ng-template" id="order_all.html">
         <div class="">
+            <% orderItemLists.forEach(function(orderItemList){%>
             <table class="table table-responsive table-hover table-bordered mt25">
                 <thead>
                 <tr class="success">
-                    <td class="w38"><input type="checkbox">&nbsp;<strong>2016.2.26</strong>&nbsp;&nbsp;订单号：E1234567</td>
-                    <td class="w12 pointer">多特蒙德旗舰店</td>
+                    <td class="w38"><input type="checkbox">&nbsp;<strong><%=orderItemList.orderDate%></strong>&nbsp;&nbsp;订单号：<%=orderItemList._id%></td>
+                    <td class="w12 pointer"><%=orderItemList.orderShopTitle%></td>
                     <td class="w5">数量</td>
                     <td class="order_contact w10 pointer">和我联系</td>
                     <td class="w10">实付款</td>
                     <td class="w12">交易状态</td>
                     <td class="w10">
                         <span data-toggle="tooltip" title="分享" class="glyphicon glyphicon-share pointer" onmouseover="orderTip()"></span>
-                        <span data-toggle="tooltip" title="删除" class="glyphicon glyphicon-trash pointer ml15" onmouseover="orderTip()"></span>
+                        <a href="" class="ml10 blod" data-toggle="modal" data-target="#deletOrder">
+                            <span data-toggle="tooltip" title="删除" class="glyphicon glyphicon-trash orderTrash" onmouseover="orderTip ()"></span>
+                        </a>
+                        <div class="modal fade" id="deletOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            删除订单
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        确定要删除该订单吗？
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="deleteOrder('<%=orderItemList._id%>')">确定
+                                        </button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                            关闭
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 </thead>
@@ -94,27 +121,27 @@
                 <tr>
                     <td>
                         <div>
-                            <div class="order_img left"><img src="images/order/order01.jpg" class="img-responsive"></div>
+                            <div class="order_img left"><img src="<%=orderItemList.orderPicSrc%>" class="img-responsive"></div>
                             <div class="left ml15 mt5">
-                                <p class="order_item_title"><a href="">NIKE MERCURIAL AG圆钉刺客11代男子足球鞋</a></p>
-                                <p class="order_item_detail">颜色：红黑  尺码：41</p>
+                                <p class="order_item_title"><a href=""><%=orderItemList.orderItemTitle%></a></p>
+                                <p class="order_item_detail">颜色：红黑  尺码：<%=orderItemList.orderItemSize%></p>
                                 <p class="order_item_guarantee">7天退换 如实描述 正品保证</p>
                             </div>
                         </div>
                     </td>
                     <td class="table_content_center">
-                        <div class="order_item_OriginalPrice mt5"><s>￥569.00</s></div>
-                        <div class="order_item_CurrentPrice mt5">￥529.00</div>
+                        <div class="order_item_OriginalPrice mt5"><s>￥<%=orderItemList.orderItemPrice%></s></div>
+                        <div class="order_item_CurrentPrice mt5">￥<%=orderItemList.orderItemPrice%></div>
                     </td>
                     <td class="table_content_center">
-                        <div class="order_item_num">1</div>
+                        <div class="order_item_num"><%=orderItemList.orderItemNum%></div>
                     </td>
                     <td class="table_content_center">
                         <div class="order_business_operation mt5"><a href="">申请售后</a> </div>
                         <div class="order_business_operation mt5"><a href="">联系卖家</a> </div>
                     </td>
                     <td class="table_content_center">
-                        <div class="order_item_RealPayment mt5">￥529.00</div>
+                        <div class="order_item_RealPayment mt5">￥<%=orderItemList.orderItemPay%></div>
                         <div class="order_item_freight mt5">(含运费：￥0.00)</div>
                     </td>
                     <td class="table_content_center">
@@ -129,112 +156,7 @@
                 </tbody>
             </table>
 
-            <table class="table table-responsive table-hover table-bordered mt25">
-                <thead>
-                <tr class="success">
-                    <td class="w38"><input type="checkbox">&nbsp;<strong>2016.2.26</strong>&nbsp;&nbsp;订单号：E1234567</td>
-                    <td class="w12 pointer">多特蒙德旗舰店</td>
-                    <td class="w5">数量</td>
-                    <td class="order_contact w10 pointer">和我联系</td>
-                    <td class="w10">实付款</td>
-                    <td class="w12">交易状态</td>
-                    <td class="w10">
-                        <span data-toggle="tooltip" title="分享" class="glyphicon glyphicon-share pointer" onmouseover="orderTip()"></span>
-                        <span data-toggle="tooltip" title="删除" class="glyphicon glyphicon-trash pointer ml15" onmouseover="orderTip()"></span>
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <div>
-                            <div class="order_img clearfix left"><img src="images/order/order01.jpg" class="img-responsive"></div>
-                            <div class="left ml15 mt5">
-                                <p class="order_item_title"><a href="">NIKE MERCURIAL AG圆钉刺客11代男子足球鞋</a></p>
-                                <p class="order_item_detail">颜色：红黑  尺码：41</p>
-                                <p class="order_item_guarantee">7天退换 如实描述 正品保证</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_OriginalPrice mt5"><s>￥569.00</s></div>
-                        <div class="order_item_CurrentPrice mt5">￥529.00</div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_num">1</div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_business_operation mt5"><a href="">申请售后</a> </div>
-                        <div class="order_business_operation mt5"><a href="">联系卖家</a> </div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_RealPayment mt5">￥529.00</div>
-                        <div class="order_item_freight mt5">(含运费：￥0.00)</div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_status mt5"><a href="">交易成功</a> </div>
-                        <div class="order_item_status mt5"><a href="">订单详情</a> </div>
-                        <div class="order_item_status mt5"><a href="">查看物流</a> </div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_TransactionOperation mt5"><a href="">追加评论</a> </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table class="table table-responsive table-hover table-bordered mt25">
-                <thead>
-                <tr class="success">
-                    <td class="w38"><input type="checkbox">&nbsp;<strong>2016.2.26</strong>&nbsp;&nbsp;订单号：E1234567</td>
-                    <td class="w12 pointer">多特蒙德旗舰店</td>
-                    <td class="w5">数量</td>
-                    <td class="order_contact w10 pointer">和我联系</td>
-                    <td class="w10">实付款</td>
-                    <td class="w12">交易状态</td>
-                    <td class="w10">
-                        <span data-toggle="tooltip" title="分享" class="glyphicon glyphicon-share pointer" onmouseover="orderTip()"></span>
-                        <span data-toggle="tooltip" title="删除" class="glyphicon glyphicon-trash pointer ml15" onmouseover="orderTip()"></span>
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <div>
-                            <div class="order_img clearfix left"><img src="images/order/order01.jpg" class="img-responsive"></div>
-                            <div class="left ml15 mt5">
-                                <p class="order_item_title"><a href="">NIKE MERCURIAL AG圆钉刺客11代男子足球鞋</a></p>
-                                <p class="order_item_detail">颜色：红黑  尺码：41</p>
-                                <p class="order_item_guarantee">7天退换 如实描述 正品保证</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_OriginalPrice mt5"><s>￥569.00</s></div>
-                        <div class="order_item_CurrentPrice mt5">￥529.00</div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_num">1</div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_business_operation mt5"><a href="">申请售后</a> </div>
-                        <div class="order_business_operation mt5"><a href="">联系卖家</a> </div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_RealPayment mt5">￥529.00</div>
-                        <div class="order_item_freight mt5">(含运费：￥0.00)</div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_status mt5"><a href="">交易成功</a> </div>
-                        <div class="order_item_status mt5"><a href="">订单详情</a> </div>
-                        <div class="order_item_status mt5"><a href="">查看物流</a> </div>
-                    </td>
-                    <td class="table_content_center">
-                        <div class="order_item_TransactionOperation mt5"><a href="">追加评论</a> </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <%})%>
 
             <!--分页-->
             <ul class="pagination pagination">

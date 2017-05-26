@@ -130,7 +130,7 @@
 	<!--ContentTop-->
 	<div class="content-top" ng-repeat="contentTop in contentTopList">
 		<div class="col-md-4 top-content">
-			<a href=""><img class="img-responsive " ng-src="{{contentTop.src}}" alt=""></a>
+			<a ng-href="{{contentTop.href}}"><img class="img-responsive " ng-src="{{contentTop.src}}" alt=""></a>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -169,7 +169,7 @@
 						<div class="clearfix"> </div>
 					</div>
 				</div>
-				<a href="#" class="view" ng-bind="bottomGirdsNewsViewAll"></a>
+				<a href="/news" class="view" ng-bind="bottomGirdsNewsViewAll"></a>
 			</div>
 	<div class="clearfix"> </div>
 	</div>

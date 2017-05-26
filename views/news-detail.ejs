@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="newsDetailApp">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+
+    <!--jQuery-->
+    <script type="text/javascript" src="/javascripts/jQuery/jquery.min.js"></script>
+    <link type="text/css" href="/stylesheets/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link type="text/css" href="/stylesheets/common.css" rel="stylesheet">
+    <link type="text/css" href="/stylesheets/news-detail.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/javascripts/AngularJs/angular.min.js"></script>
+    <script type="text/javascript" src="/stylesheets/bootstrap/js/bootstrap.js"></script>
+
+    <!--Controllers-->
+    <script type="text/javascript" src="/controllers/newsDetailCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/headerCtrl.js"></script>
+    <script type="text/javascript" src="/controllers/common/footerCtrl.js"></script>
+</head>
+<body >
+<%include ./common/header.ejs%>
+<div class="container mt30 minh700" ng-controller="newsDetailController">
+    <div class="contentTitle">
+        <h1><%=newsDetailInfo.newsDetailTitle%></h1>
+    </div>
+    <div class="mt20">
+        <label class="mr20">编辑：<span><%=newsDetailInfo.newsDetailAdminName%></span></label>
+        <label class="mr20">发布时间：<span><%=newsDetailInfo.newsDetailReleaseTime%></span></label>
+        <label class="mr20"><span class="glyphicon glyphicon-eye-open"></span><span class="ml10"><%=newsDetailInfo.newsDetailViews%></span></label>
+    </div>
+    <div class="newsContent col-md-10 mt30">
+        <%for(var i=0;i<newsDetailContent.length;i++) {%>
+        <div class="col-md-12 newsContentText mb10"><P><%=newsDetailContent[i].contentText%></P></div>
+        <div class="col-md-12 newsContentImg mb10"><img src="<%=newsDetailContent[i].contentPicSrc%>" class="img-responsive newsContentImg"></div>
+        <%} %>
+    </div>
+</div>
+<%include ./common/footer.ejs%>
+</body>
+</html>
