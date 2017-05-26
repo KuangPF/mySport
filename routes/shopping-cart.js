@@ -63,7 +63,6 @@ router.get('/delete/*',function (req,res,next) {
                 console.log(err);
             } else {
                 res.redirect('/shopping-cart');
-                console.log('cart');
                 res.end();
             }
         })

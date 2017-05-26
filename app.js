@@ -11,7 +11,6 @@ var users = require('./routes/users');
 var login=require('./routes/login');
 var log_out=require('./routes/log-out');
 var register=require('./routes/register');
-var item=require('./routes/item');
 var information=require('./routes/information');
 var shopping_cart=require('./routes/shopping-cart');
 var order=require('./routes/order');
@@ -32,6 +31,7 @@ var content=require('./routes/content');
 var shoesEvaluation=require('./routes/shoesEvaluation');
 var teamLogoEmblem=require('./routes/teamLogoEmblem');
 var fanForum=require('./routes/fan-forum');
+var news=require('./routes/news');
 var app = express();
 
 // view engine setup
@@ -53,7 +53,6 @@ app.use('/login',login);
 app.use('/log-out',log_out);
 app.use('/register',register);
 app.use('/register-succeed',register);
-app.use('/item',item);
 app.use('/information',information);
 app.use('/shopping-cart',shopping_cart);
 app.use('/order',order);
@@ -73,6 +72,7 @@ app.use('/item',itemOperations);
 app.use('/shoes-evaluation',shoesEvaluation);
 app.use('/team-logo-emblem',teamLogoEmblem);
 app.use('/fan-forum',fanForum);
+app.use('/news',news);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

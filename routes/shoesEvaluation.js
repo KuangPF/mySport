@@ -29,7 +29,6 @@ router.get('/',function (req,res,next) {
             console.log(err);
         } else {
             var SEItemLists=result;
-            console.log(SEItemLists.SELabel);
             res.render('shoes-evaluation',{
                 username:usernameCookie,
                 title:'球鞋测评',

@@ -64,12 +64,15 @@ app.controller("indexCtrl", [ '$scope', function($scope){
 
     $scope.contentTopList=[
         {
+            'href':'/news/detail/59239fe0b28b24013e542131',
             'src':'/images/content_top/finallyball.jpg'
         },
         {
+            'href':'/news/detail/59239fe0b28b24013e542131',
             'src':'/images/content_top/dragon_pack%20.jpg'
         },
         {
+            'href':'/news/detail/5923a628b28b24013e54326a',
             'src':'/images/content_top/krasava.jpg'
         }
     ];

@@ -101,4 +101,6 @@ body {
     border: 1px solid #ddd;
     border-bottom-color: transparent;
 }
-
+.orderTrash {
+    color: #000;
+}

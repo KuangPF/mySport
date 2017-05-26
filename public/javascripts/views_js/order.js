@@ -63,3 +63,11 @@ function fy() {
         });
     });
 }
+
+/*
+* 删除订单
+*/
+
+function deleteOrder(orderID) {
+    self.location.href='/order/delete/'+orderID;
+}
